@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="50dp"
+	android:background="@color/primary_dark">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<RelativeLayout
+			android:layout_width="220dp"
+			android:layout_height="match_parent">
+
+			<ImageView
+				android:id="@+id/toolbarImage"
+				android:layout_width="36dp"
+				android:layout_height="36dp"
+				android:layout_centerVertical="true"
+				android:src="@drawable/jewelchat_logo"
+				android:layout_alignParentLeft="true"/>
+
+			<TextView
+				android:id="@+id/toolbarTitle"
+				android:layout_width="match_parent"
+				android:layout_height="25dp"
+				android:text="JewelChat"
+				android:textSize="18sp"
+				android:textColor="@color/white"
+				android:layout_marginTop="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_alignParentTop="true"
+				android:layout_toRightOf="@+id/toolbarImage"/>
+
+			<TextView
+				android:id="@+id/toolbarSubtitle"
+				android:layout_width="match_parent"
+				android:layout_height="14dp"
+				android:text="Online"
+				android:textSize="12sp"
+				android:textColor="@color/white"
+				android:layout_marginLeft="12dp"
+				android:layout_marginBottom="2dp"
+				android:visibility="gone"
+				android:layout_below="@+id/toolbarTitle"
+				android:layout_toRightOf="@+id/toolbarImage"/>
+
+		</RelativeLayout>
+		<RelativeLayout
+			android:layout_width="100dp"
+			android:layout_height="match_parent"
+			android:layout_alignParentRight="true"
+			android:layout_marginRight="2dp"
+			android:layout_marginTop="3dp"
+			android:layout_marginBottom="3dp">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="20dp"
+				android:layout_alignParentTop="true">
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_ac"/>
+				<TextView
+					android:layout_width="25dp"
+					android:layout_height="match_parent"
+					android:layout_marginRight="4dp"
+				    android:text="20"
+				    android:textSize="12sp"
+				    android:gravity="center"
+				    android:textColor="#fff"/>
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_bc"/>
+				<TextView
+					android:layout_width="25dp"
+					android:layout_height="match_parent"
+					android:text="23"
+					android:textSize="12sp"
+					android:gravity="center"
+					android:textColor="#fff"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="20dp"
+				android:layout_alignParentBottom="true">
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_cc"/>
+				<TextView
+					android:layout_width="25dp"
+					android:layout_height="match_parent"
+					android:layout_marginRight="4dp"
+					android:text="34"
+					android:textSize="12sp"
+					android:gravity="center"
+					android:textColor="#fff"/>
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_dc"/>
+				<TextView
+					android:layout_width="25dp"
+					android:layout_height="match_parent"
+					android:text="19"
+					android:textSize="12sp"
+					android:gravity="center"
+					android:textColor="#fff"/>
+			</LinearLayout>
+
+
+		</RelativeLayout>
+
+	</RelativeLayout>
+
+
+</android.support.v7.widget.Toolbar>

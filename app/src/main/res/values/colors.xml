@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="primary">#3a7dc4</color>
+	<color name="primary_dark">#063971</color>
+	<color name="primary_light">#aad6ed</color>
+	<color name="accent">#316482</color>
+	<color name="accent_light">#5b8aa6</color>
+	<color name="primary_text">#212121</color>
+	<color name="secondary_text">#727272</color>
+	<color name="primary_dark_light">#40006064</color>
+
+	<color name="icons">#FFFFFF</color>
+	<color name="divider">#6F6F6F</color>
+	<color name="white">#FFFFFF</color>
+	<color name="transparent">#00FFFFFF</color>
+	<color name="grey_light">#E0E0E0</color>
+	<color name="location_geocoder_error">#FFCDD2</color>
+	<!-- List -->
+	<color name="list_click_selector">#664DD0E1</color>
+	<color name="list_long_click_selector">#8826C6DA</color>
+	<color name="image_background">#CFD8DC</color>
+	<!-- Chat -->
+	<color name="chat_room_item_bg">#B2EBF2</color>
+	<!-- Feed -->
+	<color name="feed_post_text_scrim">#6A000000</color>
+	<color name="feed_list_background">#CCCCCC</color>
+	<color name="new_post_background">#FFFFFF</color>
+
+</resources>
