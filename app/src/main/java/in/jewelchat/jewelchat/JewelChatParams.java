@@ -5,4 +5,6 @@ package in.jewelchat.jewelchat;
  */
 public class JewelChatParams {
 
+
+
 }

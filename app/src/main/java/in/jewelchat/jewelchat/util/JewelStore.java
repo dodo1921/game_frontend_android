@@ -50,7 +50,7 @@ public class JewelStore {
 	public static final int XP = 36;
 
 
-	public static void updateJewelCount( int[][] jewels){
+	public static void updateJewelCount( int[][] jewels, boolean levelchange){
 
 		SharedPreferences.Editor e = JewelChatApp.getSharedPref().edit();
 
@@ -109,7 +109,7 @@ public class JewelStore {
 
 
 		JewelChatApp.getBusInstance().post(new BasicJewelCountChangedEvent(square,triangle,
-				circle, rectangle, coin, diamond, level, xp));
+				circle, rectangle, coin, diamond, level, xp, levelchange));
 
 	}
 
@@ -126,7 +126,7 @@ public class JewelStore {
 		int xp = JewelChatApp.getSharedPref().getInt("XP",0);
 
 		return new BasicJewelCountChangedEvent(square,triangle,
-				circle, rectangle, coin, diamond, level, xp);
+				circle, rectangle, coin, diamond, level, xp, false);
 	}
 
 	public static int[] getStore(){

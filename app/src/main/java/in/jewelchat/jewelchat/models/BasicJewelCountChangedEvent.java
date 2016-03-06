@@ -13,9 +13,11 @@ public class BasicJewelCountChangedEvent {
 	public final int diamond;
 	public final int level;
 	public final int xp;
+	public final boolean levelchange;
 
 
-	public BasicJewelCountChangedEvent(int square, int circle, int triangle, int rectangle, int coin, int diamond, int level, int xp){
+	public BasicJewelCountChangedEvent(int square, int circle, int triangle, int rectangle,
+	                                   int coin, int diamond, int level, int xp, boolean levelchange){
 		this.square = square;
 		this.circle = circle;
 		this.triangle = triangle;
@@ -24,6 +26,7 @@ public class BasicJewelCountChangedEvent {
 		this.diamond = diamond;
 		this.level = level;
 		this.xp = xp;
+		this.levelchange = levelchange;
 	}
 
 }

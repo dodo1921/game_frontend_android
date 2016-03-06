@@ -118,14 +118,16 @@ public class JewelChatApp extends Application {
 	@Produce
 	public static BasicJewelCountChangedEvent produceJewelChangeEvent() {
 		// Provide an initial value for location based on the last known position.
-		return new BasicJewelCountChangedEvent(getSharedPref().getInt(JewelChatPrefs.SQUARE,0),
-				getSharedPref().getInt(JewelChatPrefs.CIRCLE,0),
-				getSharedPref().getInt(JewelChatPrefs.TRIANGLE,0),
-				getSharedPref().getInt(JewelChatPrefs.RECTANGLE,0),
-				getSharedPref().getInt(JewelChatPrefs.COIN,0),
-				getSharedPref().getInt(JewelChatPrefs.DIAMOND,0),
-				getSharedPref().getInt(JewelChatPrefs.LEVEl,0),
-				getSharedPref().getInt(JewelChatPrefs.XP,0));
+		return new BasicJewelCountChangedEvent(
+				getSharedPref().getInt("A",0),
+				getSharedPref().getInt("B",0),
+				getSharedPref().getInt("C",0),
+				getSharedPref().getInt("D",0),
+				getSharedPref().getInt("Y",0),
+				getSharedPref().getInt("Z",0),
+				getSharedPref().getInt("LEVEL",0),
+				getSharedPref().getInt("XP",0),
+				false);
 	}
 
 
@@ -140,7 +142,7 @@ public class JewelChatApp extends Application {
 		Crashlytics.setUserName(getSharedPref().getString(JewelChatPrefs.getMyName(), ""));
 		AnalyticsTrackers.initialize(this);
 		setupPicasso();
-		//getJCSocket().getSocket().connect();
+		getJCSocket().getSocket().connect();
 		
 	}
 	
@@ -149,7 +151,7 @@ public class JewelChatApp extends Application {
 	@Override
 	public void onTerminate() {
 		Log.d("App", "Terminate");
-		//getJCSocket().getSocket().disconnect();
+		getJCSocket().getSocket().disconnect();
 		//setAppActivity(null);
 		super.onTerminate();
 	}
