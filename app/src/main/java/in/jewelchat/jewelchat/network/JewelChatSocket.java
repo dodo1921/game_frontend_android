@@ -82,7 +82,7 @@ public class JewelChatSocket {
 
 			}
 
-		}).on( JewelChatPrefs.getChannelName(), new Emitter.Listener() {
+		}).on( JewelChatApp.getSharedPref().getString(JewelChatPrefs.CHANNEL,"" ), new Emitter.Listener() {
 
 			@Override
 			public void call(Object... args) {
@@ -96,7 +96,7 @@ public class JewelChatSocket {
 
 			}
 
-		}).on( Socket.EVENT_RECONNECT, new Emitter.Listener() {
+		}).on(Socket.EVENT_RECONNECT, new Emitter.Listener() {
 
 			@Override
 			public void call(Object... args) {

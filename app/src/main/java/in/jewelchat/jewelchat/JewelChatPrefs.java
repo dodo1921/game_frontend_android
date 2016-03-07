@@ -5,6 +5,7 @@ package in.jewelchat.jewelchat;
  */
 public class JewelChatPrefs {
 
+	public static final String CHANNEL = "channel";
 	public static final String IS_LOGGED = "IsLoggedIn";
 	public static final String STORE_MAX = "storemax";
 	public static final String XP_MAX = "xpmax";

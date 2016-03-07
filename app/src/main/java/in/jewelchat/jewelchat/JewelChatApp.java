@@ -3,6 +3,7 @@ package in.jewelchat.jewelchat;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -13,9 +14,13 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Produce;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
+import in.jewelchat.jewelchat.models.UserPresence;
 import in.jewelchat.jewelchat.network.JewelChatSocket;
 import in.jewelchat.jewelchat.util.AnalyticsTrackers;
+import in.jewelchat.jewelchat.util.PresenceRunnable;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -24,6 +29,7 @@ import io.fabric.sdk.android.Fabric;
 public class JewelChatApp extends Application {
 
 	public static final int CONNECTION_TIMEOUT = 10000;
+	public static final String TEAM_JEWELCHAT = "1";
 
 	private static JewelChatApp mInstance;
 	private static RequestQueue mRequestQueue;
@@ -32,6 +38,8 @@ public class JewelChatApp extends Application {
 	private static Picasso mPicasso;
 	private static JewelChatSocket jcSocket;
 	private static final Bus BUS = new Bus();
+
+	private static HashMap<Integer, UserPresence> contactPresence = new HashMap<Integer, UserPresence>();
 
 
 	public static boolean JewelChat_Active = false;
@@ -130,6 +138,19 @@ public class JewelChatApp extends Application {
 				false);
 	}
 
+	public static void loadContactPresence(){
+
+		// load contact ids in contactPresence HashMap
+
+		new Handler().postDelayed(new PresenceRunnable(), 1000);
+
+	}
+
+	public static HashMap<Integer, UserPresence> getContactPresenceHashMap(){
+
+		return contactPresence;
+	}
+
 
 	@Override
 	public void onCreate() {
@@ -138,12 +159,13 @@ public class JewelChatApp extends Application {
 		super.onCreate();
 		mInstance = this;
 		//setAppActivity(null);
-		Crashlytics.setUserIdentifier(getSharedPref().getString(JewelChatPrefs.getMyPhoneNumber(), ""));
-		Crashlytics.setUserName(getSharedPref().getString(JewelChatPrefs.getMyName(), ""));
+		Crashlytics.setUserIdentifier(getSharedPref().getString(JewelChatPrefs.MY_PHONE_NUMBER, ""));
+		Crashlytics.setUserName(getSharedPref().getString(JewelChatPrefs.MY_NAME, ""));
 		AnalyticsTrackers.initialize(this);
 		setupPicasso();
 		getJCSocket().getSocket().connect();
-		
+		loadContactPresence();
+
 	}
 	
 

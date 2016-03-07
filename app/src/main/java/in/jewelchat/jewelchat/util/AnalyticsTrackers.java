@@ -52,8 +52,7 @@ public final class AnalyticsTrackers {
 					tracker = GoogleAnalytics.getInstance(mContext).newTracker(R.xml.app_tracker);
 					tracker.enableAdvertisingIdCollection(true);
 					tracker.set("&uid",
-							JewelChatApp.getSharedPref().getString(JewelChatPrefs.getMyPhoneNumber(), "") + ":" +
-									JewelChatApp.getSharedPref().getString(JewelChatPrefs.getMyName(), ""));
+							JewelChatApp.getSharedPref().getString(JewelChatPrefs.MY_ID,"User"));
 					break;
 				default:
 					throw new IllegalArgumentException("Unhandled analytics target " + target);
