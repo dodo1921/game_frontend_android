@@ -32,12 +32,14 @@ public class ActivitySplashScreen extends Activity {
 					finish();
 
 				} else {
+
 					Intent i = new Intent(ActivitySplashScreen.this, ActivityRegistration.class);
 					startActivity(i);
 					finish();
+
 				}
 			}
 
-		}, 2000);
+		}, 1000);
 	}
 }

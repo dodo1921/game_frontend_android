@@ -114,6 +114,8 @@ public class JewelChatApp extends Application {
 		Crashlytics.log(Log.VERBOSE, "in.jewelchat.mayukh", Thread.currentThread().getName() + ":" + message);
 	}
 
+
+
 	private static void setupPicasso() {
 
 		if (mPicasso == null) {
