@@ -1,36 +1,226 @@
 package in.jewelchat.jewelchat.screens;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+
+import in.jewelchat.jewelchat.BaseNetworkActivity;
+import in.jewelchat.jewelchat.JewelChatApp;
+import in.jewelchat.jewelchat.JewelChatPrefs;
+import in.jewelchat.jewelchat.JewelChatURLS;
 import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.models.User;
+import in.jewelchat.jewelchat.network.JewelChatRequest;
+import in.jewelchat.jewelchat.util.AnalyticsTrackers;
 
 /**
  * Created by mayukhchakraborty on 29/02/16.
  */
-public class ActivityVerificationCode extends Activity implements View.OnClickListener {
+public class ActivityVerificationCode extends BaseNetworkActivity implements TextView.OnEditorActionListener, Response.Listener<JSONObject>{
 
-	private Button btn_continue;
+	private EditText editText;
+	private String verificationCode;
+	private String requestTag = "verification";
+	private Button submit;
+	private TextView resend;
+	int resend_count = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_verification);
+		className = getClass().getSimpleName();
+		rootLayout = (LinearLayout) findViewById(R.id.verify_root);
+		submit = (Button) rootLayout.findViewById(R.id.verify_button);
+		submit.setOnClickListener(this);
+		editText = (EditText) rootLayout.findViewById(R.id.verification_code);
+		editText.setOnEditorActionListener(this);
+		resend = (TextView) rootLayout.findViewById(R.id.resend_code);
+		resend.setOnClickListener(this);
 
-		btn_continue = (Button)findViewById(R.id.verify_button);
-		btn_continue.setOnClickListener(this);
+	}
+
+	@Override
+	protected void setUpAppbar() {
 
 	}
 
 	@Override
 	public void onClick(View v) {
 
-		Intent i = new Intent(ActivityVerificationCode.this, ActivityTutorial.class);
-		startActivity(i);
-		finish();
+		if (v.getId() == R.id.verify_button) {
+			action();
+			return;
+		}
+		if(v.getId() == R.id.resend_code){
+			resendCode();
+			return;
+		}
 
+
+	}
+
+	@Override
+	public void onResponse(JSONObject response) {
+		JewelChatApp.appLog(className + ":onResponse");
+
+		try {
+			String request = response.getString("request");
+			if(request.equals("verifyCode")){
+
+				Type jtype = new TypeToken<User>(){}.getType();
+				Gson gson = new Gson();
+				User user = gson.fromJson(response.getString("user").toString(), jtype);
+
+				SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
+				editor.putBoolean(JewelChatPrefs.IS_LOGGED,true);
+				editor.commit();
+				hideKeyBoard();
+				dismissDialog();
+
+				AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP)
+						.send(new HitBuilders.EventBuilder()
+								.setCategory("Registration")
+								.setAction("Successful Verification Code Submit ")
+								.setLabel("Registration Success")
+								.build());
+
+				Intent intent = new Intent(getApplicationContext(), ActivityTutorial.class);
+				startActivity(intent);
+				finish();
+
+
+
+			}else if(request.equals("resendVCODE")){
+				dismissDialog();
+				if(resend_count>=3){
+					return;
+				}else if(resend_count==1){
+					resend_count++;
+					resend.setText("Resend one more time");
+				}else if(resend_count==2){
+					resend_count++;
+					resend.setText("");
+					resend.setClickable(false);
+				}
+
+				AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP)
+						.send(new HitBuilders.EventBuilder()
+								.setCategory("Registration")
+								.setAction("Code Resend")
+								.setLabel("VerificationCode Resend Success")
+								.build());
+
+			}
+
+
+		} catch (JSONException e) {
+			Crashlytics.logException(e);
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		return ((actionId == EditorInfo.IME_ACTION_SEND) && action());
+	}
+
+	private boolean action() {
+
+		JewelChatApp.appLog(className + ":action");
+		verificationCode = this.editText.getText().toString().trim();
+
+		if(verificationCode.length() == 0){
+			makeToast("Please enter verification code");
+			return false;
+		}if(verificationCode.length() <6){
+			return false;
+		}else if(verificationCode.length() == 6){
+
+			createDialog(getString(R.string.please_wait));
+
+			JSONObject jsonParams = new JSONObject();
+			try {
+
+				jsonParams.put("userId", JewelChatApp.getSharedPref().getLong(JewelChatPrefs.MY_ID,0L));
+				jsonParams.put("verificationCode", Integer.parseInt(verificationCode));
+				jsonParams.put("name", JewelChatApp.getSharedPref().getString(JewelChatPrefs.MY_NAME, ""));
+				if(JewelChatApp.getSharedPref().getLong(JewelChatPrefs.REFERRER, 0L) > 0)
+					jsonParams.put("referrer", JewelChatApp.getSharedPref().getLong(JewelChatPrefs.REFERRER,0L));
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+				Crashlytics.logException(e);
+			}
+
+
+			JewelChatRequest request = new JewelChatRequest(Request.Method.POST,
+					JewelChatURLS.VERIFICATIONCODE_URL, jsonParams, this, this);
+
+			if (addRequest(request)) {
+				return true;
+			}else
+				return false;
+
+		}
+
+		return false;
+
+	}
+
+	private void resendCode() {
+
+
+		createDialog(getString(R.string.please_wait));
+
+		JSONObject jsonParams = new JSONObject();
+		try {
+
+			jsonParams.put("userId", JewelChatApp.getSharedPref().getLong(JewelChatPrefs.MY_ID, 0L));
+
+
+		} catch (JSONException e) {
+			Crashlytics.logException(e);
+			e.printStackTrace();
+		}
+
+
+		JewelChatRequest request = new JewelChatRequest(Request.Method.POST,
+				JewelChatURLS.RESENDVCODE_URL, jsonParams, this, this);
+
+		addRequest(request);
+
+	}
+
+	private void hideKeyBoard() {
+		try {
+			InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
+		} catch (Exception e) {
+			JewelChatApp.appLog(getClass().getSimpleName() + ":" + e.toString());
+		}
 	}
 }

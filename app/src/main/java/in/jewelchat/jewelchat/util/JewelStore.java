@@ -104,12 +104,13 @@ public class JewelStore {
 		int coin = JewelChatApp.getSharedPref().getInt("Y",0);
 		int diamond = JewelChatApp.getSharedPref().getInt("Z",0);
 		int level = JewelChatApp.getSharedPref().getInt("LEVEL",0);
+		int level_xp = JewelChatApp.getSharedPref().getInt("LEVEL_XP",0);
 		int xp = JewelChatApp.getSharedPref().getInt("XP",0);
 
 
 
 		JewelChatApp.getBusInstance().post(new BasicJewelCountChangedEvent(square,triangle,
-				circle, rectangle, coin, diamond, level, xp, levelchange));
+				circle, rectangle, coin, diamond, level, level_xp ,xp, levelchange));
 
 	}
 
@@ -123,10 +124,11 @@ public class JewelStore {
 		int coin = JewelChatApp.getSharedPref().getInt("Y",0);
 		int diamond = JewelChatApp.getSharedPref().getInt("Z",0);
 		int level = JewelChatApp.getSharedPref().getInt("LEVEL",0);
+		int level_xp = JewelChatApp.getSharedPref().getInt("LEVEL_XP",0);
 		int xp = JewelChatApp.getSharedPref().getInt("XP",0);
 
 		return new BasicJewelCountChangedEvent(square,triangle,
-				circle, rectangle, coin, diamond, level, xp, false);
+				circle, rectangle, coin, diamond, level, level_xp, xp, false);
 	}
 
 	public static int[] getStore(){

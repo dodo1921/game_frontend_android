@@ -1,26 +1,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                tools:context="in.jewelchat.jewelchat.JewelChat$FragmentChat">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="in.jewelchat.jewelchat.JewelChat$FragmentChat">
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/sym_action_chat"
-        app:borderWidth="0dp"
-        app:layout_anchor="@+id/list"
-        app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior="com.arnium.cititalk.utils.ScrollAwareFABBehaviour"/>
+	<ListView
+		android:id="@+id/list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+	</ListView>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab_chat"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|right"
+		android:layout_margin="16dp"
+		android:src="@android:drawable/sym_action_chat"
+		app:borderWidth="0dp"
+		app:layout_anchor="@+id/list"
+		app:layout_anchorGravity="bottom|right|end"
+		app:layout_behavior="com.arnium.cititalk.utils.ScrollAwareFABBehaviour"/>
 
 
 </FrameLayout>

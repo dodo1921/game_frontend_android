@@ -1,13 +1,13 @@
 package in.jewelchat.jewelchat;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.squareup.otto.Subscribe;
 
@@ -20,7 +20,7 @@ import in.jewelchat.jewelchat.screens.FragmentGame;
 import in.jewelchat.jewelchat.screens.FragmentTasks;
 import in.jewelchat.jewelchat.screens.FragmentWallet;
 
-public class JewelChat extends AppCompatActivity {
+public class JewelChat extends BaseNetworkActivity {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -37,13 +37,18 @@ public class JewelChat extends AppCompatActivity {
 	 */
 	private ViewPager mViewPager;
 
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jewel_chat);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.jewelchat_toolbar);
-		setSupportActionBar(toolbar);
+		rootLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+
+		setUpAppbar();
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -68,15 +73,6 @@ public class JewelChat extends AppCompatActivity {
 					}
 				});
 
-		/*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-						.setAction("Action", null).show();
-			}
-		});*/
-
 	}
 
 
@@ -88,18 +84,28 @@ public class JewelChat extends AppCompatActivity {
 	}
 
 	@Override
-	protected void onStop(){
-		super.onStop();
+	protected void onPause(){
+		super.onPause();
 		JewelChatApp.getBusInstance().unregister(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+
 	}
 
 	@Subscribe
 	public void onBasicJewelCountChanged( BasicJewelCountChangedEvent event) {
 
-		//change Toolbar items
+		A.setText(event.A+"");
+		B.setText(event.B+"");
+		C.setText(event.C+"");
+		D.setText(event.D+"");
+		LEVEL.setText(event.LEVEL+"");
+		XP.setMax(event.LEVEL_XP);XP.setProgress(event.XP);
+		LEVEL_SCORE.setText(event.XP+"/"+event.LEVEL_XP);
 
 	}
-
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

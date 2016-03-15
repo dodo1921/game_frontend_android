@@ -5,8 +5,10 @@ package in.jewelchat.jewelchat;
  */
 public class JewelChatURLS {
 
-	private static final String baseURL = "https://cititalk02102015.herokuapp.com";
+	private static final String baseURL = "https://jgamebackend.herokuapp.com";
 
 	public static final String REGISTRATION_URL = baseURL + "/registerPhone";
+	public static final String VERIFICATIONCODE_URL = baseURL + "/verifyCode";
+	public static final String RESENDVCODE_URL = baseURL + "/resendVCODE";
 
 }

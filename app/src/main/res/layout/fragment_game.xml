@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-    <ImageView
-	    android:id="@+id/game_hidden_image"
-	    android:layout_width="300dp"
-	    android:layout_height="400dp"
-	    android:layout_alignParentTop="true"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="8dp"/>
+
+	<ImageView
+		android:id="@+id/game_hidden_image"
+		android:layout_width="300dp"
+		android:layout_height="400dp"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="8dp"/>
 
 	<GridView
 		android:id="@+id/gamegrid"
@@ -17,10 +18,10 @@
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
 		android:layout_marginTop="8dp"
-		android:numColumns="6"
 		android:columnWidth="50dp"
-		android:verticalSpacing="0dp"
+		android:gravity="center"
 		android:horizontalSpacing="0dp"
-		android:gravity="center"></GridView>
+		android:numColumns="6"
+		android:verticalSpacing="0dp"></GridView>
 
 </RelativeLayout>

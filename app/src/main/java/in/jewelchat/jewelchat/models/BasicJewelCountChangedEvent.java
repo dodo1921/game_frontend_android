@@ -5,27 +5,29 @@ package in.jewelchat.jewelchat.models;
  */
 public class BasicJewelCountChangedEvent {
 
-	public final int square;
-	public final int circle;
-	public final int triangle;
-	public final int rectangle;
-	public final int coin;
-	public final int diamond;
-	public final int level;
-	public final int xp;
+	public final int A;
+	public final int C;
+	public final int B;
+	public final int D;
+	public final int Y;
+	public final int Z;
+	public final int LEVEL;
+	public final int LEVEL_XP;
+	public final int XP;
 	public final boolean levelchange;
 
 
-	public BasicJewelCountChangedEvent(int square, int circle, int triangle, int rectangle,
-	                                   int coin, int diamond, int level, int xp, boolean levelchange){
-		this.square = square;
-		this.circle = circle;
-		this.triangle = triangle;
-		this.rectangle = rectangle;
-		this.coin = coin;
-		this.diamond = diamond;
-		this.level = level;
-		this.xp = xp;
+	public BasicJewelCountChangedEvent(int A, int C, int B, int D,
+	                                   int Y, int Z, int LEVEL, int LEVEL_XP, int XP, boolean levelchange){
+		this.A = A;
+		this.C = C;
+		this.B = B;
+		this.D = D;
+		this.Y = Y;
+		this.Z = Z;
+		this.LEVEL = LEVEL;
+		this.LEVEL_XP = LEVEL_XP;
+		this.XP = XP;
 		this.levelchange = levelchange;
 	}
 

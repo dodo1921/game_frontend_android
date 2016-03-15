@@ -47,10 +47,7 @@ public abstract class BaseNetworkActivity extends BaseActivity implements Respon
 		super.onDestroy();
 	}
 
-	@Override
-	protected void setUpAppbar() {
-		super.setUpAppbar();
-	}
+
 
 	protected void dismissDialog() {
 		JewelChatApp.appLog(className + ":dismissDialog");
@@ -142,7 +139,7 @@ public abstract class BaseNetworkActivity extends BaseActivity implements Respon
 				String json = new String(response.data);
 				try{
 					JSONObject obj = new JSONObject(json);
-					String errorMessage = "500. "+obj.getString("data");
+					String errorMessage = "Please Try Again. Error 500. "+obj.getString("data");
 					makeToast(errorMessage);
 
 				} catch(JSONException e){

@@ -136,6 +136,7 @@ public class JewelChatApp extends Application {
 				getSharedPref().getInt("Y",0),
 				getSharedPref().getInt("Z",0),
 				getSharedPref().getInt("LEVEL",0),
+				getSharedPref().getInt("LEVEL_XP",0),
 				getSharedPref().getInt("XP",0),
 				false);
 	}
@@ -161,7 +162,7 @@ public class JewelChatApp extends Application {
 		super.onCreate();
 		mInstance = this;
 		//setAppActivity(null);
-		Crashlytics.setUserIdentifier(getSharedPref().getString(JewelChatPrefs.MY_PHONE_NUMBER, ""));
+		Crashlytics.setUserIdentifier(getSharedPref().getLong(JewelChatPrefs.MY_PHONE_NUMBER, 0L)+"");
 		Crashlytics.setUserName(getSharedPref().getString(JewelChatPrefs.MY_NAME, ""));
 		AnalyticsTrackers.initialize(this);
 		setupPicasso();

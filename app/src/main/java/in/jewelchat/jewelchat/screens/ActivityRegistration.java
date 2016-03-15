@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -63,6 +64,7 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 		textView.setMovementMethod(LinkMovementMethod.getInstance());
 		String text = "<a href='http://cititalk.in/TermsofService.pdf'> Terms and Conditions </a>";
 		textView.setText(Html.fromHtml(text));
+		setUpAppbar();
 
 	}
 
@@ -71,6 +73,12 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 		dismissDialog();
 		JewelChatApp.getRequestQueue().cancelAll(requestTag);
 		super.onDestroy();
+	}
+
+	@Override
+	protected void setUpAppbar() {
+
+
 	}
 
 	@Override
@@ -115,7 +123,7 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 					String formatReferrer = phoneNumberUtil.format(referrer, PhoneNumberUtil.PhoneNumberFormat.E164);
 					if (formatReferrer != null && formatReferrer.length() > 9) {
 						SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
-						editor.putString(JewelChatPrefs.REFERRER, formatReferrer);
+						editor.putLong(JewelChatPrefs.REFERRER, Long.parseLong(formatReferrer.substring(1), 10));
 						editor.commit();
 					}
 				} catch (NumberParseException e) {
@@ -149,10 +157,12 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 		try {
 			String id = response.getString("id");
 			SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
-			editor.putString(JewelChatPrefs.MY_ID, id);
+			editor.putLong(JewelChatPrefs.MY_ID, Long.parseLong(id));
 			editor.putString(JewelChatPrefs.MY_NAME, personName);
+			Log.i("OMG",e164formatNumber.substring(1) );
+			editor.putLong(JewelChatPrefs.MY_PHONE_NUMBER, Long.parseLong(e164formatNumber.substring(1), 10));
 			editor.commit();
-			Crashlytics.setUserIdentifier(phoneNumber);
+			Crashlytics.setUserIdentifier(e164formatNumber);
 			Crashlytics.setUserName(personName);
 			Intent intent = new Intent(getApplicationContext(), ActivityVerificationCode.class);
 			hideKeyBoard();
