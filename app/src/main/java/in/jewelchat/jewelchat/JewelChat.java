@@ -1,5 +1,6 @@
 package in.jewelchat.jewelchat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -19,6 +20,7 @@ import in.jewelchat.jewelchat.screens.FragmentChatList;
 import in.jewelchat.jewelchat.screens.FragmentGame;
 import in.jewelchat.jewelchat.screens.FragmentTasks;
 import in.jewelchat.jewelchat.screens.FragmentWallet;
+import in.jewelchat.jewelchat.service.RegistrationIntentService;
 
 public class JewelChat extends BaseNetworkActivity {
 
@@ -72,6 +74,11 @@ public class JewelChat extends BaseNetworkActivity {
 
 					}
 				});
+
+		if(!JewelChatApp.getSharedPref().getBoolean(JewelChatPrefs.TOKEN_SENT,false)){
+			Intent service = new Intent(getApplicationContext(), RegistrationIntentService.class);
+			startService(service);
+		}
 
 	}
 

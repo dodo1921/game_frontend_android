@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:descendantFocusability="blocksDescendants"
+                android:id="@+id/chatlist_element" >
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/contact_image_chatlist"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:adjustViewBounds="true"
+        android:focusable="false" />
+
+    <TextView
+        android:id="@+id/contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/contact_image_chatlist"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="+919005835708"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <!--github.ankushsachdeva.emojicon.EmojiconTextView
+        android:id="@+id/lastpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:layout_below="@id/contact_name"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="last post"
+        android:textColor="#666"
+        android:textSize="14sp" /-->
+
+    <TextView
+        android:id="@+id/lastposttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/contact_name"
+        android:layout_alignBottom="@+id/contact_name"
+        android:layout_alignParentRight="true"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="12:00a.m"
+        android:textColor="#666"
+        android:textSize="12sp" />
+
+</RelativeLayout>

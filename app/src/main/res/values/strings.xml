@@ -11,4 +11,5 @@
 	<string name="error_msg_number_length_not_ten">Enter your 10 digit mobile number</string>
 	<string name="enter_name">Enter your name</string>
 	<string name="error_default_entry_app">Enter correct number and name</string>
+	<string name="gcm_defaultSenderId">22580238469</string>
 </resources>

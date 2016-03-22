@@ -1,7 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="5dp"
+                android:background="@color/primary_light"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
 
-</LinearLayout>
+
+        <TextView
+            android:id="@+id/diamond_count"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:text="2"
+            android:textSize="30sp"
+            android:gravity="left"
+            android:textColor="@color/primary_dark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/diamond_count"
+            android:src="@drawable/jewelchat_logo"/>
+
+        <RelativeLayout
+            android:id="@+id/task_main"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:id="@+id/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick 11 triangles each from 5 users "
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/primary_dark"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/task"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Note: Edgar Morales Orta i dont really follow EDM, House etc but i listen to it in the summer. so i dont know. What is the difference between vs and feat"
+                android:textColor="@color/primary_dark"
+                android:textSize="14sp"
+                android:textStyle="italic"/>
+
+        </RelativeLayout>
+
+
+
+        <com.daasuu.ahp.AnimateHorizontalProgressBar
+            android:id="@+id/animate_progress_bar"
+            android:layout_below="@+id/task_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ahp_backgroundColor="@color/colorPrimaryDark"
+            app:ahp_progressColor="@color/colorAccent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/animate_progress_bar"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_states"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:enabled="false"
+                android:textAllCaps="false"
+                android:text="Claim Diamond"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_states"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:text="Check Progress"/>
+
+        </LinearLayout>
+
+</RelativeLayout>

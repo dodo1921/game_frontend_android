@@ -3,7 +3,9 @@ package in.jewelchat.jewelchat.screens;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -38,7 +40,7 @@ import in.jewelchat.jewelchat.network.JewelChatRequest;
 /**
  * Created by mayukhchakraborty on 28/02/16.
  */
-public class ActivityRegistration extends BaseNetworkActivity implements TextView.OnEditorActionListener, Response.Listener<JSONObject> {
+public class ActivityRegistration extends BaseNetworkActivity implements TextView.OnEditorActionListener, Response.Listener<JSONObject>, Html.ImageGetter {
 
 	private EditText enterNumber;
 	private EditText enterName;
@@ -62,8 +64,11 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 		TextView textView = (TextView) rootLayout.findViewById(R.id.terms);
 		textView.setClickable(true);
 		textView.setMovementMethod(LinkMovementMethod.getInstance());
-		String text = "<a href='http://cititalk.in/TermsofService.pdf'> Terms and Conditions </a>";
-		textView.setText(Html.fromHtml(text));
+		//String text = "<p> Hello <img src='A' /> <x> world </p>";
+		//String text1 = text.replaceAll("<x>", 100+"");
+		//Spanned spanned = Html.fromHtml(text1, this, null);
+
+		//textView.setText(spanned);
 		setUpAppbar();
 
 	}
@@ -187,5 +192,25 @@ public class ActivityRegistration extends BaseNetworkActivity implements TextVie
 		}
 	}
 
+	@Override
+	public Drawable getDrawable(String source) {
 
+		int id;
+		Log.i("Drawable", "Drawable");
+
+		if (source.equals("A")) {
+			id = R.drawable.ic_ac;
+		}
+		else if (source.equals("overflow.jpg")) {
+			id = R.drawable.ic_bc;
+		}
+		else {
+			return null;
+		}
+
+		Drawable d = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_ab);
+		d.setBounds(0,0,d.getIntrinsicWidth(), d.getIntrinsicHeight());
+		return d;
+
+	}
 }

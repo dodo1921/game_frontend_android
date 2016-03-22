@@ -28,6 +28,10 @@ import io.fabric.sdk.android.Fabric;
  */
 public class JewelChatApp extends Application {
 
+	private static final String SET_COOKIE_KEY = "Set-Cookie";
+	private static final String COOKIE_KEY = "Cookie";
+	private static final String SESSION_COOKIE = "session";
+
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final String TEAM_JEWELCHAT = "1";
 
@@ -83,31 +87,34 @@ public class JewelChatApp extends Application {
 		sharedPref = mInstance.getSharedPreferences("in.mayukh.jewelchat", Context.MODE_PRIVATE);
 	}
 
+	public static void saveCookie(String cookie) {
+		// TODO Auto-generated method stub
+		if (cookie == null) {
+			//the server did not return a cookie so we wont have anything to save
+			return;
+		}
+		// Save in the preferences
+		SharedPreferences.Editor editor = getSharedPref().edit();
+		editor.putString("cookie", cookie);
+		editor.commit();
+	}
+
 	public static String getCookie() {
-		setCookie();
-		if (mCookie.contains("expires")) {
+
+		String cookie = getSharedPref().getString("cookie", "");
+		if (cookie.contains("expires")) {
+			/** you might need to make sure that your cookie returns expires when its expired. I also noted that cokephp returns deleted */
 			removeCookie();
 			return "";
 		}
-		return mCookie;
+		return cookie;
 	}
 
-	private static void setCookie() {
-		mCookie = sharedPref.getString("cookie", "");
-	}
+	public static void removeCookie() {
 
-	private static void removeCookie() {
 		SharedPreferences.Editor editor = getSharedPref().edit();
 		editor.remove("cookie");
-		editor.apply();
-	}
-
-	public static void saveCookie(String cookie) {
-		if (cookie != null) {
-			SharedPreferences.Editor editor = getSharedPref().edit();
-			editor.putString("cookie", cookie);
-			editor.apply();
-		}
+		editor.commit();
 	}
 
 	public static void appLog(@NonNull String message) {

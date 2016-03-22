@@ -1,5 +1,7 @@
 package in.jewelchat.jewelchat.network;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
@@ -44,27 +46,31 @@ public class JewelChatRequest extends JsonObjectRequest {
 
 	@Override
 	protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-		try {
-			Map<String, String> headers = response.headers;
-			String cookie = headers.get("Set-Cookie");
-			JewelChatApp.saveCookie(cookie);
-		}catch (OutOfMemoryError e){
-			//JewelChatApp.appLog(getClass().getSimpleName() + ":" + e.toString());
-			//Crashlytics.logException(e);
+
+
+
+		Map<String, String> headers = response.headers;
+		for(String i: headers.keySet()){
+			Log.i(">>>>"+i, headers.get(i));
+			Log.i("????"+i, headers.get(i).length()+"");
 		}
+
+		String cookie = (String) headers.get("Set-Cookie");
+		JewelChatApp.saveCookie(cookie);
 		return super.parseNetworkResponse(response);
+
 	}
 
 	@Override
 	public Map<String, String> getHeaders() throws AuthFailureError {
-		Map<String, String> headers = new HashMap<>();
-		try {
-			if (!JewelChatApp.getCookie().equals("")) {
-				headers.put("Cookie", JewelChatApp.getCookie());
-			}
-		} catch (Exception e) {
-			//JewelChatApp.appLog(getClass().getSimpleName() + ":" + e.toString());
+
+		Map<String, String> headers = new HashMap<String, String>();
+		if(!JewelChatApp.getCookie().equals("")){
+			headers.put("Cookie", JewelChatApp.getCookie());
+			Log.i("GETHEADER", JewelChatApp.getCookie());
 		}
 		return headers;
+
 	}
+
 }
