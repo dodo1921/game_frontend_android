@@ -12,7 +12,7 @@ public class GroupMessageContract  implements BaseColumns {
 	public static final String KEY_ROWID = BaseColumns._ID;
 	public static final String GROUP_ID = "groupId";
 	public static final String CHAT_MESSAGE_ID = "chatMessageId";
-	public static final String CONTACT_ID = "contactId";
+	public static final String JEWELCHAT_ID = "jewelChatId";
 	public static final String CONTACT_NUMBER = "contactNumber";
 	public static final String CONTACT_NAME = "contactName";
 	public static final String IS_READ = "isRead";
@@ -29,7 +29,7 @@ public class GroupMessageContract  implements BaseColumns {
 			KEY_ROWID + " integer PRIMARY KEY autoincrement," +
 			GROUP_ID + "  INTEGER" + ", " +
 			CHAT_MESSAGE_ID + "  INTEGER" + ", " +
-			CONTACT_ID + "  INTEGER" + ", " +
+			JEWELCHAT_ID + "  INTEGER" + ", " +
 			CONTACT_NUMBER + "  INTEGER" + ", " +
 			CONTACT_NAME + "  TEXT" + ", " +
 			IS_READ + "  INTEGER" + ", " +

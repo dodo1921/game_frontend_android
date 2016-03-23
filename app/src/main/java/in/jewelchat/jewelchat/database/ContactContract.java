@@ -11,13 +11,16 @@ import android.util.Log;
 public class ContactContract implements BaseColumns {
 
 	public static final String KEY_ROWID = BaseColumns._ID;
-	public static final String CONTACT_ID = "contactId"; // backend Id
+	public static final String JEWELCHAT_ID = "jewelChatId"; // backend Id
 	public static final String CONTACT_NUMBER = "contactNumber";
 	public static final String GCM_TOKEN = "gcmToken";
 	public static final String CONTACT_NAME = "contactName";
+	public static final String PHONEBOOK_CONTACT_NAME = "PhoneBookContactName";
 	public static final String IS_GROUP = "isGroup";
+	public static final String IMAGE_PHONEBOOK = "imagePhoneBook";
 	public static final String IMAGE_BLOB = "imageBlob";
-	public static final String IMAGE_PATH = "imagePath";
+	public static final String IMAGE_BLOB_NUMBER = "imageBlobNumber";
+	public static final String CURRENT_IMAGE_NUMBER = "currentImageNumber";
 	public static final String IMAGE_SEQ = "imageSeq";
 	public static final String STATUS_MSG = "statusMsg";
 	public static final String IS_REGIS = "isRegis";
@@ -33,10 +36,11 @@ public class ContactContract implements BaseColumns {
 	private static final String DATABASE_CREATE =
 			"CREATE TABLE if not exists " + SQLITE_TABLE_NAME + " (" +
 					KEY_ROWID + " integer PRIMARY KEY autoincrement," +
-					CONTACT_ID + "  INTEGER" +  ", " +
+					JEWELCHAT_ID + "  INTEGER" +  ", " +
 					CONTACT_NUMBER + "  INTEGER" +  ", " +
 					GCM_TOKEN + "  TEXT" +  ", " +
 					CONTACT_NAME + "  TEXT" +  ", " +
+					PHONEBOOK_CONTACT_NAME + "  TEXT" +  ", " +
 					IS_GROUP + "  INTEGER" +  ", " +
 					STATUS_MSG + "  TEXT" +  ", " +
 					IS_REGIS + "  INTEGER" +  ", " +
@@ -44,8 +48,10 @@ public class ContactContract implements BaseColumns {
 					IS_INVITED + "  INTEGER" +  ", " +
 					IS_BLOCKED + "  INTEGER" +  ", " +
 					IS_PHONEBOOK_CONTACT + "  INTEGER" +  ", " +
+					IMAGE_PHONEBOOK + "  TEXT" +  ", " +
 					IMAGE_BLOB + "  BLOB" +  ", " +
-					IMAGE_PATH + "  TEXT" +  ", " +
+					IMAGE_BLOB_NUMBER + "  INTEGER  " +  ", " +
+					CURRENT_IMAGE_NUMBER + "  INTEGER" +  ", " +
 					IMAGE_SEQ + "  TEXT)";
 
 	public static void onCreate(SQLiteDatabase db) {

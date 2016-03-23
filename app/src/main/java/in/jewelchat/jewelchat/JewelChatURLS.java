@@ -14,4 +14,6 @@ public class JewelChatURLS {
 	public static final String RESENDVCODE_URL = baseURL + "/resendVCODE";
 	public static final String UPDATE_GCM_TOKEN = baseURL + "/updateGcmToken";
 
+	public static final String GETCONTACTBYPHONENUMBERLIST = baseURL + "/getContactByPhoneNumberList";
+
 }

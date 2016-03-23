@@ -11,7 +11,9 @@ public class GroupContract implements BaseColumns {
 
 	public static final String KEY_ROWID = BaseColumns._ID;
 	public static final String GROUP_ID = "groupId";// foreign key of the group/contact
-	public static final String CONTACT_ID = "contactId";
+	public static final String JEWELCHAT_ID = "jewelChatId";
+	public static final String GCM_TOKEN = "gcmToken";
+	public static final String CURRENT_IMAGE_NUMBER = "currentImageNumber";
 	public static final String CONTACT_NUMBER = "contactNumber";
 	public static final String CONTACT_NAME = "contactName";
 
@@ -22,8 +24,10 @@ public class GroupContract implements BaseColumns {
 			"CREATE TABLE if not exists " + SQLITE_TABLE_NAME + " ( " +
 					KEY_ROWID + " integer PRIMARY KEY autoincrement," +
 					GROUP_ID + "  INTEGER" + ", " +
-					CONTACT_ID + "  INTEGER" + ", " +
+					JEWELCHAT_ID + "  INTEGER" + ", " +
+					CURRENT_IMAGE_NUMBER + "  INTEGER" +  ", " +
 					CONTACT_NUMBER + "  INTEGER" + ", " +
+					GCM_TOKEN + "  TEXT" + ", " +
 					CONTACT_NAME + "  TEXT" + " )";
 
 
