@@ -21,6 +21,7 @@ import in.jewelchat.jewelchat.screens.FragmentGame;
 import in.jewelchat.jewelchat.screens.FragmentTasks;
 import in.jewelchat.jewelchat.screens.FragmentWallet;
 import in.jewelchat.jewelchat.service.RegistrationIntentService;
+import in.jewelchat.jewelchat.util.NetworkConnectivityStatus;
 
 public class JewelChat extends BaseNetworkActivity {
 
@@ -63,14 +64,19 @@ public class JewelChat extends BaseNetworkActivity {
 		mViewPager = (ViewPager) findViewById(R.id.container);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
+
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(mViewPager);
+		tabLayout.getTabAt(JewelChatApp.getSharedPref().getInt(JewelChatPrefs.LAST_TAB, 0)).select();
+
+
 
 		tabLayout.setOnTabSelectedListener(
 				new TabLayout.ViewPagerOnTabSelectedListener(mViewPager) {
 					@Override
 					public void onTabSelected(TabLayout.Tab tab) {
 						super.onTabSelected(tab);
+						JewelChatApp.getSharedPref().edit().putInt(JewelChatPrefs.LAST_TAB, tab.getPosition()).commit();
 
 					}
 				});
@@ -78,6 +84,21 @@ public class JewelChat extends BaseNetworkActivity {
 		if(!JewelChatApp.getSharedPref().getBoolean(JewelChatPrefs.TOKEN_SENT,false)){
 			Intent service = new Intent(getApplicationContext(), RegistrationIntentService.class);
 			startService(service);
+		}
+
+		/*
+		if(!JewelChatApp.getSharedPref().getBoolean(JewelChatPrefs.GROUPS_DOWNLOADED,false)){
+			Intent service2 = new Intent(getApplicationContext(), FirstTimeGroupListDownload.class);
+			startService(service2);
+		}
+
+		Intent service3 = new Intent(getApplicationContext(), PhoneBookContactUpdateService.class);
+		startService(service3);
+
+		*/
+
+		if(NetworkConnectivityStatus.getConnectivityStatus() == NetworkConnectivityStatus.NOT_CONNECTED){
+			this.showNoInternetDialog();
 		}
 
 	}
@@ -136,7 +157,7 @@ public class JewelChat extends BaseNetworkActivity {
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
+
 			return mFragmentList.size();
 		}
 
@@ -150,5 +171,7 @@ public class JewelChat extends BaseNetworkActivity {
 		public CharSequence getPageTitle(int position) {
 			return mFragmentTitleList.get(position);
 		}
+
 	}
+
 }

@@ -90,13 +90,62 @@ public class ActivityVerificationCode extends BaseNetworkActivity implements Tex
 			String request = response.getString("request");
 			if(request.equals("verifyCode")){
 
+				long currTime = response.getInt("time");
+				long deviceCurrentTime = System.currentTimeMillis();
+
 				Type jtype = new TypeToken<User>(){}.getType();
 				Gson gson = new Gson();
 				User user = gson.fromJson(response.getString("user").toString(), jtype);
 
 				SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
 				editor.putBoolean(JewelChatPrefs.IS_LOGGED,true);
+				editor.putInt(JewelChatPrefs.LEVEl, user.level);
+				editor.putInt(JewelChatPrefs.XP_MAX, user.xp_max);
+				editor.putInt(JewelChatPrefs.XP, user.xp);
+				editor.putInt(JewelChatPrefs.STORE_MAX, user.store_max);
+				editor.putInt(JewelChatPrefs.A, user.A);
+				editor.putInt(JewelChatPrefs.B, user.B);
+				editor.putInt(JewelChatPrefs.C, user.C);
+				editor.putInt(JewelChatPrefs.D, user.D);
+				editor.putInt(JewelChatPrefs.E, user.E);
+				editor.putInt(JewelChatPrefs.F, user.F);
+				editor.putInt(JewelChatPrefs.G, user.G);
+				editor.putInt(JewelChatPrefs.H, user.H);
+				editor.putInt(JewelChatPrefs.I, user.I);
+				editor.putInt(JewelChatPrefs.J, user.J);
+				editor.putInt(JewelChatPrefs.K, user.K);
+				editor.putInt(JewelChatPrefs.L, user.L);
+				editor.putInt(JewelChatPrefs.M, user.M);
+				editor.putInt(JewelChatPrefs.N, user.N);
+				editor.putInt(JewelChatPrefs.O, user.O);
+				editor.putInt(JewelChatPrefs.P, user.P);
+				editor.putInt(JewelChatPrefs.Q, user.Q);
+				editor.putInt(JewelChatPrefs.R, user.R);
+				editor.putInt(JewelChatPrefs.S, user.S);
+				editor.putInt(JewelChatPrefs.T, user.T);
+				editor.putInt(JewelChatPrefs.U, user.U);
+				editor.putInt(JewelChatPrefs.V, user.V);
+				editor.putInt(JewelChatPrefs.W, user.W);
+				editor.putInt(JewelChatPrefs.X, user.X);
+				editor.putInt(JewelChatPrefs.Y, user.Y);
+				editor.putInt(JewelChatPrefs.Z, user.Z);
+				editor.putInt(JewelChatPrefs.a, user.a);
+				editor.putInt(JewelChatPrefs.b, user.b);
+				editor.putInt(JewelChatPrefs.c, user.c);
+				editor.putInt(JewelChatPrefs.d, user.d);
+				editor.putInt(JewelChatPrefs.e, user.e);
+				editor.putInt(JewelChatPrefs.f, user.f);
+				editor.putInt(JewelChatPrefs.g, user.g);
+				editor.putInt(JewelChatPrefs.h, user.h);
+				editor.putString(JewelChatPrefs.BOARD, user.board);
+				editor.putString(JewelChatPrefs.BOARD_STATE, user.board_state);
+				editor.putInt(JewelChatPrefs.GAME_IMAGE, user.game_image);
+				editor.putLong(JewelChatPrefs.TIME_DIFF, deviceCurrentTime - currTime);
+
 				editor.commit();
+
+				//JewelChatApp.getBusInstance().post(JewelChatApp.produceJewelChangeEvent());
+
 				hideKeyBoard();
 				dismissDialog();
 

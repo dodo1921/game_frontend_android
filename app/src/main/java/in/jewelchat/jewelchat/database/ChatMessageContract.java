@@ -71,10 +71,14 @@ public class ChatMessageContract implements BaseColumns {
 	public static void onCreate(SQLiteDatabase db) {
 		Log.i("ChatMessage", "OnCreate");
 		db.execSQL(DATABASE_CREATE);
+
 		/*
-		String insertquery1 =  "INSERT INTO ChatMessage (type,creatorId,msgId,timeCreated,isRead,isDelivered,isSubmitted,msgtext,karma,isGroupMsg)"+
-				" values('1','1','56789','1234567890','0','1','1','Hello from CityTalk team', '24','0' )";
+
+		String insertquery1 =  "INSERT INTO ChatMessage (type,chatroom,creatorId,msgId,timeCreated,isRead,isDelivered,isSubmitted,msgtext,isGroupMsg)"+
+				" values('0','2','2','0','1234567890','1','1','1','Welcome to JewelChat', '0' )";
 		db.execSQL(insertquery1);
+
+		/*
 
 		String insertquery2 =  "INSERT INTO ChatMessage (type,creatorId,timeCreated,isRead,isDelivered,isSubmitted,msgtext,karma,isGroupMsg)"+
 				" values('4','4','56789','1234567890','1','1','1','Arnium Group created', '0', '1' )";

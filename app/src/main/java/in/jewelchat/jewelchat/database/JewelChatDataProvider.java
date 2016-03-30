@@ -100,11 +100,11 @@ public class JewelChatDataProvider extends ContentProvider {
 			}
 			case CHAT_LIST:{
 				String query = "SELECT "
-						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_ID + ", "
+						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.JEWELCHAT_ID + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_NAME + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_NUMBER + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.IMAGE_BLOB + ", "
-						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.IMAGE_PATH + ", "
+						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CURRENT_IMAGE_NUMBER + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.IS_REGIS + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.IS_GROUP + ", "
 						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.IS_GROUP_ADMIN + ", "
@@ -120,7 +120,7 @@ public class JewelChatDataProvider extends ContentProvider {
 						+ "MAX("+ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.KEY_ROWID+")"
 						+ " FROM "
 						+ ContactContract.SQLITE_TABLE_NAME + ", "+ ChatMessageContract.SQLITE_TABLE_NAME
-						+ " WHERE "+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_ID+" = "+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CHAT_ROOM
+						+ " WHERE "+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.JEWELCHAT_ID+" = "+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CHAT_ROOM
 						+ " GROUP BY "+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CHAT_ROOM;
 				Log.i(">>", query);
 				Cursor returnCursor = db.rawQuery(query, null);
@@ -132,7 +132,7 @@ public class JewelChatDataProvider extends ContentProvider {
 			}
 			case NON_SUBMITTED:{
 				String query = "SELECT " + ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_NAME + ", "
-						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_ID + ", "
+						+ ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.JEWELCHAT_ID + ", "
 						+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.MSG_TYPE + ", "
 						+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.MSG_TEXT + ", "
 						+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.IS_IMAGE_UPLOADED + ", "
@@ -149,7 +149,7 @@ public class JewelChatDataProvider extends ContentProvider {
 						+ " FROM "
 						+  ContactContract.SQLITE_TABLE_NAME+" , "+ChatMessageContract.SQLITE_TABLE_NAME
 						+ " WHERE "+ ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CREATOR_ID + " = '"+ JewelChatApp.getSharedPref().getString(JewelChatPrefs.MY_ID, "")+"'"
-						+ " AND " + ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.CONTACT_ID + " = " + ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CHAT_ROOM
+						+ " AND " + ContactContract.SQLITE_TABLE_NAME+"."+ContactContract.JEWELCHAT_ID + " = " + ChatMessageContract.SQLITE_TABLE_NAME+"."+ChatMessageContract.CHAT_ROOM
 						+ " AND " + ChatMessageContract.IS_SUBMITTED + "= 0 ";
 
 				Log.i(">>NON Submitted",query);

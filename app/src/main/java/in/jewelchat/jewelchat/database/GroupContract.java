@@ -16,6 +16,8 @@ public class GroupContract implements BaseColumns {
 	public static final String CURRENT_IMAGE_NUMBER = "currentImageNumber";
 	public static final String CONTACT_NUMBER = "contactNumber";
 	public static final String CONTACT_NAME = "contactName";
+	public static final String ISADMIN = "isAdmin";
+
 
 
 	public static final String SQLITE_TABLE_NAME = "JewelChatGroup";
@@ -27,6 +29,7 @@ public class GroupContract implements BaseColumns {
 					JEWELCHAT_ID + "  INTEGER" + ", " +
 					CURRENT_IMAGE_NUMBER + "  INTEGER" +  ", " +
 					CONTACT_NUMBER + "  INTEGER" + ", " +
+					ISADMIN + "  INTEGER" + ", " +
 					GCM_TOKEN + "  TEXT" + ", " +
 					CONTACT_NAME + "  TEXT" + " )";
 

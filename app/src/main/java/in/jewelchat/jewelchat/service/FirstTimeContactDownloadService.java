@@ -13,7 +13,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -22,15 +24,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.JewelChatPrefs;
 import in.jewelchat.jewelchat.JewelChatURLS;
 import in.jewelchat.jewelchat.database.ContactContract;
+import in.jewelchat.jewelchat.database.GroupContract;
 import in.jewelchat.jewelchat.database.JewelChatDataProvider;
+import in.jewelchat.jewelchat.models.Group;
+import in.jewelchat.jewelchat.models.GroupMember;
 import in.jewelchat.jewelchat.network.JewelChatRequest;
+import in.jewelchat.jewelchat.util.AnalyticsTrackers;
 import in.jewelchat.jewelchat.util.NetworkConnectivityStatus;
 
 /**
@@ -48,6 +56,8 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+
+		JewelChatApp.appLog("FirstTimeContactDownloadService"+":onHandleIntent");
 
 		Set<PhoneBookContact> phoneBookContactsSet = new HashSet<>();
 		Set<Long> phoneNumbers = new HashSet<>();
@@ -88,7 +98,8 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 					pbc.contactImage = "";
 				}
 
-				phoneBookContactsSet.add(pbc);
+				if(pbc.contactNumber != JewelChatApp.TEAM_JEWELCHAT)
+					phoneBookContactsSet.add(pbc);
 
 			} catch (NumberParseException e) {
 				Crashlytics.logException(e);
@@ -110,27 +121,25 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		}
 
 		cv[count] = new ContentValues();
-		cv[count].put(ContactContract.CONTACT_NUMBER, 919005835708L);
-		cv[count].put(ContactContract.CONTACT_NAME, "JewelChatTeam");
+		cv[count].put(ContactContract.CONTACT_NUMBER, JewelChatApp.TEAM_JEWELCHAT);
+		cv[count].put(ContactContract.CONTACT_NAME, "JewelChat Team");
+		cv[count].put(ContactContract.JEWELCHAT_ID, 2);
 		cv[count].put(ContactContract.IMAGE_PHONEBOOK, "");
+		cv[count].put(ContactContract.IS_REGIS, 1);
 		cv[count].put(ContactContract.IS_PHONEBOOK_CONTACT, 0);
 
 		Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ContactContract.SQLITE_TABLE_NAME);
+		getContentResolver().delete(uri, null, null);
 		getContentResolver().bulkInsert(uri, cv);
 
+		AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP)
+				.send(new HitBuilders.EventBuilder()
+						.setCategory("Initialization")
+						.setAction("Contacts read")
+						.setLabel("Initialization Success")
+						.build());
 
-		Gson gson = new Gson();
-		JSONObject params = new JSONObject();
 
-		try {
-			params.put("phoneNumberList", new JSONArray(gson.toJson(phoneNumbers.toArray())));
-			JewelChatRequest req = new JewelChatRequest(Request.Method.POST, JewelChatURLS.GETCONTACTBYPHONENUMBERLIST, params, this, this);
-			if (NetworkConnectivityStatus.getConnectivityStatus() == NetworkConnectivityStatus.CONNECTED)
-				JewelChatApp.getRequestQueue().add(req);
-		} catch (JSONException e) {
-			JewelChatApp.appLog("FirstTimeContactDownloadService" + ":makeRequest");
-			Crashlytics.logException(e);
-		}
 
 
 	}
@@ -138,31 +147,16 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 	@Override
 	public void onErrorResponse(VolleyError error) {
 
-		NetworkResponse response = error.networkResponse;
-		if(response != null && response.data != null){
-			if(response.statusCode == 403){
 
-				SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
-				editor.putBoolean(JewelChatPrefs.IS_LOGGED, false);
-				editor.putString(JewelChatPrefs.MY_ID, "");
-				editor.commit();
-
-
-
-			}else if(response.statusCode == 500){
-
-			}else{
-
-			}
-		}
-
-		JewelChatApp.appLog("FirstTimeContactDownloadService");
-		Crashlytics.logException(error);
 
 	}
 
 	@Override
 	public void onResponse(JSONObject response) {
+
+
+
+
 
 
 

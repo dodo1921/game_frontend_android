@@ -6,7 +6,7 @@
              tools:context="in.jewelchat.jewelchat.JewelChat$FragmentChat">
 
 	<ListView
-		android:id="@+id/list"
+		android:id="@+id/chat_list"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 	</ListView>

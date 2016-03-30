@@ -3,7 +3,7 @@ package in.jewelchat.jewelchat.screens;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -21,7 +21,7 @@ import in.jewelchat.jewelchat.database.JewelChatDataProvider;
 /**
  * Created by mayukhchakraborty on 02/03/16.
  */
-public class FragmentChatList extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>, android.widget.AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
+public class FragmentChatList extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, android.widget.AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
 
 	private static FragmentChatList uniqueInstance;
 	private ChatListAdapter chatListAdapter;
@@ -42,15 +42,14 @@ public class FragmentChatList extends ListFragment implements LoaderManager.Load
 		className = getClass().getSimpleName();
 		JewelChatApp.appLog(className + ":onCreate");
 		super.onCreate(savedInstanceState);
-
-
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		JewelChatApp.appLog(className + ":onCreateView");
+
 		View view = inflater.inflate(R.layout.fragment_chat, container, false);
-		listView = (ListView)view.findViewById(R.id.list);
+		listView = (ListView)view.findViewById(R.id.chat_list);
 		chatListAdapter = new ChatListAdapter(getContext());
 		listView.setAdapter(chatListAdapter);
 

@@ -7,12 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.otto.Subscribe;
-
-import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
+import in.jewelchat.jewelchat.screens.DialogJewelStore;
+import in.jewelchat.jewelchat.screens.DialogNoInternet;
 
 /**
  * Created by mayukhchakraborty on 06/03/16.
@@ -25,6 +25,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 	protected TextView A,B,C,D,LEVEL,LEVEL_SCORE;
 	protected ProgressBar XP;
+
+	protected RelativeLayout jewel_store_button;
+
+	protected DialogJewelStore jewelStoreDialog;
+	protected DialogNoInternet noInternetDialog;
 
 
 
@@ -79,11 +84,21 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 	}
 
+	protected void showNoInternetDialog() {
+
+		noInternetDialog = new DialogNoInternet();
+		noInternetDialog.show(getFragmentManager(), "No Internet");
+		noInternetDialog.setCancelable(true);
+
+	}
+
 
 
 	protected void setUpAppbar() {
 		JewelChatApp.appLog(className + ":setUpAppbar");
 		appbarRoot = (AppBarLayout)findViewById(R.id.appbar);
+
+		jewel_store_button = (RelativeLayout)appbarRoot.findViewById(R.id.jewel_store);
 
 		A = (TextView)appbarRoot.findViewById(R.id.A_appbar);
 		B = (TextView)appbarRoot.findViewById(R.id.B_appbar);
@@ -96,7 +111,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 		Toolbar toolbar = (Toolbar) findViewById(R.id.jewelchat_toolbar);
 		setSupportActionBar(toolbar);
 
+		jewel_store_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
+				jewelStoreDialog = new DialogJewelStore();
+				jewelStoreDialog.show( getFragmentManager(), "Jewel Store");
+				jewelStoreDialog.setCancelable(true);
+
+			}
+		});
 
 	}
 

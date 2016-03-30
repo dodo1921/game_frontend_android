@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import in.jewelchat.jewelchat.JewelChatApp;
+import in.jewelchat.jewelchat.service.GameStateLoadService;
 import in.jewelchat.jewelchat.util.NetworkConnectivityStatus;
 
 /**
@@ -21,6 +22,12 @@ public class NetworkReceiver extends BroadcastReceiver {
 				JewelChatApp.JewelChat_Active) {
 
 			JewelChatApp.getJCSocket().getSocket().connect();
+
+			Intent service = new Intent(JewelChatApp.getInstance().getApplicationContext(), GameStateLoadService.class);
+			JewelChatApp.getInstance().startService(service);
+
+		}else if(NetworkConnectivityStatus.getConnectivityStatus() == NetworkConnectivityStatus.NOT_CONNECTED){
+
 
 		}
 

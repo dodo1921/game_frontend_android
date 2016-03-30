@@ -33,7 +33,7 @@ public class JewelChatApp extends Application {
 	private static final String SESSION_COOKIE = "session";
 
 	public static final int CONNECTION_TIMEOUT = 10000;
-	public static final String TEAM_JEWELCHAT = "1";
+	public static final long TEAM_JEWELCHAT =  919005835708l;
 
 	private static JewelChatApp mInstance;
 	private static RequestQueue mRequestQueue;
@@ -136,15 +136,15 @@ public class JewelChatApp extends Application {
 	public static BasicJewelCountChangedEvent produceJewelChangeEvent() {
 		// Provide an initial value for location based on the last known position.
 		return new BasicJewelCountChangedEvent(
-				getSharedPref().getInt("A",0),
-				getSharedPref().getInt("B",0),
-				getSharedPref().getInt("C",0),
-				getSharedPref().getInt("D",0),
-				getSharedPref().getInt("Y",0),
-				getSharedPref().getInt("Z",0),
-				getSharedPref().getInt("LEVEL",0),
-				getSharedPref().getInt("LEVEL_XP",0),
-				getSharedPref().getInt("XP",0),
+				getSharedPref().getInt(JewelChatPrefs.A,0),
+				getSharedPref().getInt(JewelChatPrefs.B,0),
+				getSharedPref().getInt(JewelChatPrefs.C,0),
+				getSharedPref().getInt(JewelChatPrefs.D,0),
+				getSharedPref().getInt(JewelChatPrefs.Y,0),
+				getSharedPref().getInt(JewelChatPrefs.Z,0),
+				getSharedPref().getInt(JewelChatPrefs.LEVEl,0),
+				getSharedPref().getInt(JewelChatPrefs.XP_MAX,0),
+				getSharedPref().getInt(JewelChatPrefs.XP,0),
 				false);
 	}
 

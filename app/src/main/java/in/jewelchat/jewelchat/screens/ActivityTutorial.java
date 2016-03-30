@@ -8,7 +8,6 @@ import android.os.Handler;
 import in.jewelchat.jewelchat.JewelChat;
 import in.jewelchat.jewelchat.R;
 import in.jewelchat.jewelchat.service.FirstTimeContactDownloadService;
-import in.jewelchat.jewelchat.service.RegistrationIntentService;
 
 /**
  * Created by mayukhchakraborty on 29/02/16.
@@ -22,6 +21,9 @@ public class ActivityTutorial extends Activity {
 
 		Intent service = new Intent(getApplicationContext(), FirstTimeContactDownloadService.class);
 		startService(service);
+
+
+
 
 		new Handler().postDelayed(new Runnable() {
 

@@ -70,8 +70,8 @@
             android:layout_below="@+id/task_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:ahp_backgroundColor="@color/colorPrimaryDark"
-            app:ahp_progressColor="@color/colorAccent" />
+            app:ahp_backgroundColor="@color/primary_dark"
+            app:ahp_progressColor="@color/accent_light" />
 
 
         <LinearLayout

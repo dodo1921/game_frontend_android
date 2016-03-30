@@ -15,5 +15,8 @@ public class JewelChatURLS {
 	public static final String UPDATE_GCM_TOKEN = baseURL + "/updateGcmToken";
 
 	public static final String GETCONTACTBYPHONENUMBERLIST = baseURL + "/getContactByPhoneNumberList";
+	public static final String GETGAMESTATE = baseURL + "/getGameState";
+
+	public static final String GETGROUPLIST = baseURL + "/getGroupList";
 
 }

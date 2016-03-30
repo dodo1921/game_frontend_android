@@ -9,6 +9,8 @@ import in.jewelchat.jewelchat.JewelChat;
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.JewelChatPrefs;
 import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.service.GameStateLoadService;
+import in.jewelchat.jewelchat.util.NetworkConnectivityStatus;
 
 /**
  * Created by mayukhchakraborty on 28/02/16.
@@ -19,6 +21,11 @@ public class ActivitySplashScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splashscreen);
+
+		if(JewelChatApp.getSharedPref().getBoolean(JewelChatPrefs.IS_LOGGED, false) && NetworkConnectivityStatus.getConnectivityStatus()>0){
+			Intent service = new Intent(getApplicationContext(), GameStateLoadService.class);
+			startService(service);
+		}
 
 		new Handler().postDelayed(new Runnable() {
 
