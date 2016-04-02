@@ -27,7 +27,7 @@
 				android:layout_height="25dp"
 				android:layout_alignParentTop="true"
 				android:layout_marginLeft="10dp"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="13dp"
 				android:layout_toRightOf="@+id/toolbarImage"
 				android:text="JewelChat"
 				android:textColor="@color/white"
@@ -36,14 +36,14 @@
 			<TextView
 				android:id="@+id/toolbarSubtitle"
 				android:layout_width="match_parent"
-				android:layout_height="14dp"
+				android:layout_height="12dp"
 				android:layout_below="@+id/toolbarTitle"
-				android:layout_marginBottom="2dp"
+				android:layout_marginBottom="1dp"
 				android:layout_marginLeft="12dp"
 				android:layout_toRightOf="@+id/toolbarImage"
 				android:text="Online"
 				android:textColor="@color/white"
-				android:textSize="12sp"
+				android:textSize="11sp"
 				android:visibility="gone"/>
 
 		</RelativeLayout>

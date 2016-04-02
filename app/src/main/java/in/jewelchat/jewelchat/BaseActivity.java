@@ -108,7 +108,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 		XP = (ProgressBar)appbarRoot.findViewById(R.id.xpbar);
 		LEVEL_SCORE = (TextView)appbarRoot.findViewById(R.id.xpbar_value);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.jewelchat_toolbar);
+		Toolbar toolbar = (Toolbar) appbarRoot.findViewById(R.id.jewelchat_toolbar);
 		setSupportActionBar(toolbar);
 
 		jewel_store_button.setOnClickListener(new View.OnClickListener() {

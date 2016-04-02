@@ -46,8 +46,40 @@
 		<activity android:name=".JewelChat"
 		          android:label="@string/app_name"
 		          android:theme="@style/AppTheme.NoActionBar"
-		          android:launchMode="singleTop"
+		          android:launchMode="singleTask"
 		          android:screenOrientation="portrait">
+		</activity>
+		<activity
+			android:name=".screens.ActivityContacts"
+			android:label="@string/app_name"
+			android:theme="@style/AppTheme.NoActionBar"
+			android:launchMode="singleTop"
+			android:screenOrientation="portrait"
+			android:excludeFromRecents="false" >
+		</activity>
+		<activity
+			android:name=".screens.ActivityNewGroup"
+			android:label="@string/app_name"
+			android:theme="@style/AppTheme.NoActionBar"
+			android:launchMode="singleTop"
+			android:screenOrientation="portrait"
+			android:excludeFromRecents="true" >
+		</activity>
+		<activity
+			android:name=".screens.ActivityFactory"
+			android:label="@string/app_name"
+			android:theme="@style/AppTheme.NoActionBar"
+			android:launchMode="singleTop"
+			android:screenOrientation="portrait"
+			android:excludeFromRecents="false" >
+		</activity>
+		<activity
+			android:name=".screens.ActivityMarket"
+			android:label="@string/app_name"
+			android:theme="@style/AppTheme.NoActionBar"
+			android:launchMode="singleTop"
+			android:screenOrientation="portrait"
+			android:excludeFromRecents="true" >
 		</activity>
 
 	    <meta-data

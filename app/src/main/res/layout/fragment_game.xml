@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+				android:background="@color/black">
 
 	<ImageView
 		android:id="@+id/game_hidden_image"
@@ -9,19 +10,58 @@
 		android:layout_height="400dp"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="8dp"/>
+		android:layout_marginTop="24dp"/>
 
 	<GridView
 		android:id="@+id/gamegrid"
-		android:layout_width="300dp"
-		android:layout_height="400dp"
+		android:layout_width="310dp"
+		android:layout_height="410dp"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="8dp"
+		android:layout_marginTop="16dp"
 		android:columnWidth="50dp"
 		android:gravity="center"
 		android:horizontalSpacing="0dp"
 		android:numColumns="6"
-		android:verticalSpacing="0dp"></GridView>
+		android:verticalSpacing="0dp"
+		android:background="@drawable/border_game_grid" ></GridView>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_below="@+id/gamegrid"
+		android:gravity="center">
+
+		<Button
+			android:id="@+id/factory"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:background="@drawable/button_states"
+			android:fontFamily="sans-serif"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp"
+			android:layout_marginRight="5dp"
+			android:text="Factory"
+			android:textAllCaps="false"
+			android:textColor="@color/white"
+			android:textSize="22sp"/>
+
+		<Button
+			android:id="@+id/market"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:background="@drawable/button_states"
+			android:fontFamily="sans-serif"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp"
+			android:layout_marginLeft="5dp"
+			android:text="Market"
+			android:textAllCaps="false"
+			android:textColor="@color/white"
+			android:textSize="22sp"/>
+	</LinearLayout>
 
 </RelativeLayout>

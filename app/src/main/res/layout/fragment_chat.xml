@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
@@ -8,10 +8,11 @@
 	<ListView
 		android:id="@+id/chat_list"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true">
 	</ListView>
 
-	<android.support.design.widget.FloatingActionButton
+	<!--android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab_chat"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -21,7 +22,48 @@
 		app:borderWidth="0dp"
 		app:layout_anchor="@+id/list"
 		app:layout_anchorGravity="bottom|right|end"
-		app:layout_behavior="com.arnium.cititalk.utils.ScrollAwareFABBehaviour"/>
+		app:layout_behavior="com.arnium.cititalk.utils.ScrollAwareFABBehaviour"/-->
+
+	<com.getbase.floatingactionbutton.FloatingActionsMenu
+		android:id="@+id/multiple_actions_left"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		app:fab_addButtonColorNormal="@color/primary_dark"
+		app:fab_addButtonColorPressed="@color/accent_light"
+		app:fab_icon="@android:drawable/sym_action_chat"
+		app:fab_labelStyle="@style/menu_labels_style"
+		android:layout_marginTop="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="24dp">
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/new_group"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:fab_colorNormal="@color/white"
+			app:fab_title="New Group"
+			app:fab_icon="@drawable/ic_people_24dp"
+			app:fab_colorPressed="@color/accent_light"/>
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/contacts"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:fab_colorNormal="@color/white"
+			app:fab_title="Contacts"
+			app:fab_icon="@drawable/ic_person_24dp"
+			app:fab_colorPressed="@color/accent_light"/>
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			app:fab_colorNormal="@color/white"
+			app:fab_colorPressed="@color/accent_light"/>
+
+	</com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
-</FrameLayout>
+</RelativeLayout>

@@ -12,6 +12,7 @@
 	<color name="icons">#FFFFFF</color>
 	<color name="divider">#6F6F6F</color>
 	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
 	<color name="transparent">#00FFFFFF</color>
 	<color name="grey_light">#E0E0E0</color>
 	<color name="location_geocoder_error">#FFCDD2</color>
@@ -25,5 +26,6 @@
 	<color name="feed_post_text_scrim">#6A000000</color>
 	<color name="feed_list_background">#CCCCCC</color>
 	<color name="new_post_background">#FFFFFF</color>
+	<color name="green">#2E7D32</color>
 
 </resources>

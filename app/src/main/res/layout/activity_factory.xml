@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="in.jewelchat.jewelchat.screens.ActivityContacts">
+    tools:context="in.jewelchat.jewelchat.screens.ActivityFactory">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -24,12 +24,5 @@
             layout="@layout/jewelchat_xpbar"/>
 
     </android.support.design.widget.AppBarLayout>
-
-    <ListView
-        android:id="@+id/contact_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-    </ListView>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,5 +1,6 @@
 package in.jewelchat.jewelchat.screens;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
@@ -30,6 +34,8 @@ public class FragmentChatList extends Fragment implements LoaderManager.LoaderCa
 	private String contactNameChatDelete;
 	private ListView listView;
 
+	private FloatingActionButton contacts;
+	private FloatingActionButton newGroup;
 
 	public static FragmentChatList getInstance() {
 		if (uniqueInstance == null)
@@ -59,10 +65,36 @@ public class FragmentChatList extends Fragment implements LoaderManager.LoaderCa
 
 		getLoaderManager().initLoader(1, null, this);
 
-		//setUpFABButton(view);
+		setUpFABButton(view);
 		return view;
 	}
 
+	private void setUpFABButton(View view) {
+
+		contacts = (FloatingActionButton)view.findViewById(R.id.contacts);
+		contacts.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Intent i = new Intent(getActivity(), ActivityContacts.class);
+				startActivity(i);
+				((FloatingActionsMenu)v.getParent()).toggle();
+
+			}
+		});
+
+		newGroup = (FloatingActionButton)view.findViewById(R.id.new_group);
+		newGroup.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Intent i = new Intent(getActivity(), ActivityNewGroup.class);
+				startActivity(i);
+				((FloatingActionsMenu)v.getParent()).toggle();
+			}
+		});
+
+	}
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {

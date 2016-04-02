@@ -188,6 +188,8 @@ public class ActivityVerificationCode extends BaseNetworkActivity implements Tex
 		} catch (JSONException e) {
 			Crashlytics.logException(e);
 			e.printStackTrace();
+			hideKeyBoard();
+			dismissDialog();
 		}
 	}
 
