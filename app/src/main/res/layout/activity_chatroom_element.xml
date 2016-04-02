@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:descendantFocusability="blocksDescendants"
+                android:id="@+id/chatlist_element"
+                android:background="@color/white" >
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Tuesday"
+        android:padding="7dp"
+        android:visibility="visible" />
+
+	<TextView
+		android:id="@+id/messages"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/primary_dark"
+		android:layout_centerHorizontal="true"
+		android:textSize="14sp"
+		android:text="XYZ joined the group"
+		android:padding="7dp"
+		android:background="@color/grey"
+		android:layout_below="@+id/day"
+		android:visibility="visible" />
+
+	<LinearLayout
+		android:id="@+id/jewel_chat"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="left"
+		android:padding="5dp"
+		android:layout_below="@+id/messages">
+
+		<ImageView
+			android:id="@+id/jewel"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_centerVertical="true"
+			android:layout_alignParentLeft="true"
+			android:padding="10dp"
+			android:visibility="visible"
+			android:layout_below="@+id/day"
+			android:src="@drawable/ic_dc"/>
+
+
+	    <RelativeLayout
+	        android:id="@+id/chat_element_container"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@color/primary_light"
+	        android:padding="5dp"
+	        android:minWidth="100dp"
+	        android:layout_toRightOf="@+id/jewel"
+	        android:layout_below="@+id/day">
+
+
+	        <github.ankushsachdeva.emojicon.EmojiconTextView
+	            android:id="@+id/chat_element"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:maxWidth="300dp"
+	            android:text="OMG"
+	            android:textColor="@color/primary_dark"
+	            android:textSize="15sp"
+	            android:paddingRight="5dp"
+	            android:paddingLeft="5dp"
+	            android:paddingBottom="3dp"
+	            android:layout_alignParentLeft="false"
+	            android:layout_alignParentRight="false"
+	            android:visibility="visible"/>
+
+			<LinearLayout
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:gravity="right"
+				android:layout_below="@+id/chat_element">
+
+		        <TextView
+		            android:id="@+id/datetime"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:paddingBottom="1dp"
+		            android:paddingLeft="5dp"
+		            android:paddingRight="5dp"
+		            android:paddingTop="1dp"
+		            android:text="20:08"
+		            android:textColor="@color/primary_dark"
+		            android:textSize="12sp"
+		            android:visibility="visible"/>
+
+				<TextView
+					android:id="@+id/delivery_status"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingBottom="1dp"
+					android:paddingLeft="5dp"
+					android:paddingRight="5dp"
+					android:paddingTop="1dp"
+					android:text="20:08"
+					android:textColor="@color/primary_dark"
+					android:textSize="12sp"
+					android:layout_below="@+id/chat_element"
+					android:visibility="gone"/>
+
+			</LinearLayout>
+
+	    </RelativeLayout>
+
+	</LinearLayout>
+
+
+</RelativeLayout>

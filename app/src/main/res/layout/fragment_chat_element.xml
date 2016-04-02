@@ -33,7 +33,7 @@
         android:textColor="#000000"
         android:textSize="20sp" />
 
-    <!--github.ankushsachdeva.emojicon.EmojiconTextView
+    <github.ankushsachdeva.emojicon.EmojiconTextView
         android:id="@+id/lastpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:lines="1"
         android:text="last post"
         android:textColor="#666"
-        android:textSize="14sp" /-->
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/lastposttime"
