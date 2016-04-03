@@ -8,6 +8,7 @@
 	<color name="primary_text">#212121</color>
 	<color name="secondary_text">#727272</color>
 	<color name="primary_dark_light">#40006064</color>
+	<color name="level">#1af</color>
 
 	<color name="icons">#FFFFFF</color>
 	<color name="grey">#6F6F6F</color>
