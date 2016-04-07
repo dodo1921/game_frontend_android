@@ -1,21 +1,33 @@
 package in.jewelchat.jewelchat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import in.jewelchat.jewelchat.adapter.ChatListAdapter;
+import in.jewelchat.jewelchat.adapter.GameGridAdapter;
+import in.jewelchat.jewelchat.adapter.TasksAdapter;
+import in.jewelchat.jewelchat.database.JewelChatDataProvider;
+import in.jewelchat.jewelchat.database.TasksContract;
 import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
+import in.jewelchat.jewelchat.models.GameGridCell;
 import in.jewelchat.jewelchat.screens.FragmentChatList;
 import in.jewelchat.jewelchat.screens.FragmentGame;
 import in.jewelchat.jewelchat.screens.FragmentTasks;
@@ -40,6 +52,145 @@ public class JewelChat extends BaseNetworkActivity {
 	 */
 	private ViewPager mViewPager;
 
+	private CursorLoader chatListCursorLoader;
+	private CursorLoader taskListCursorLoader;
+
+	private ChatListAdapter chatListAdapter;
+	private TasksAdapter tasksAdapter;
+
+	private List<GameGridCell> gameGridCellList;
+	private GameGridAdapter gameGridAdapter;
+
+	private View gameView;
+	private View tasksView;
+	private View chatListView;
+	private View walletView;
+
+
+
+	public View getFragmentGameView(LayoutInflater inflater, ViewGroup container,
+	                                Bundle savedInstanceState){
+
+		if(gameView==null)
+			gameView = inflater.inflate(R.layout.fragment_game, container, false);
+
+		return gameView;
+
+	}
+
+	public View getFragmentTasksView(LayoutInflater inflater, ViewGroup container,
+	                                Bundle savedInstanceState){
+
+		if(tasksView==null)
+			tasksView = inflater.inflate(R.layout.fragment_tasks, container, false);
+
+		return tasksView;
+
+	}
+
+	public View getFragmentWalletView(LayoutInflater inflater, ViewGroup container,
+	                                 Bundle savedInstanceState){
+
+		if(walletView==null)
+			walletView = inflater.inflate(R.layout.fragment_wallet_header, container, false);
+
+		return walletView;
+
+	}
+
+	public View getFragmentChatListView(LayoutInflater inflater, ViewGroup container,
+	                                  Bundle savedInstanceState){
+
+		if(chatListView==null)
+			chatListView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+		return chatListView;
+
+	}
+
+
+
+	private void initializeGameGridCellList(){
+		gameGridCellList = new ArrayList<GameGridCell>();
+
+		String board = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD,"");
+		String board_state = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD_STATE,"");
+
+
+		for(int i=0; i<48; i++){
+
+			GameGridCell t = new GameGridCell();
+			t.type = board.charAt(i);
+			if(board_state.charAt(i)== '0')
+				t.state = false;
+			else if(board_state.charAt(i)== '1')
+				t.state = true;
+
+			gameGridCellList.add(t);
+
+
+		}
+	}
+
+	public GameGridAdapter getGameGridAdapter(){
+
+		if(gameGridAdapter==null){
+
+			if(gameGridCellList==null || gameGridCellList.size()==0)
+				initializeGameGridCellList();
+
+			gameGridAdapter = new GameGridAdapter(getApplicationContext(), gameGridCellList);
+
+		}
+
+		return gameGridAdapter;
+
+	}
+
+	public ChatListAdapter getChatListAdapter(){
+
+		if(chatListAdapter==null){
+			chatListAdapter = new ChatListAdapter(getApplicationContext());
+		}
+
+		return chatListAdapter;
+	}
+
+	public TasksAdapter getTasksAdapter(){
+
+		if(tasksAdapter==null){
+			tasksAdapter = new TasksAdapter(getApplicationContext());
+		}
+
+		return tasksAdapter;
+	}
+
+
+	public CursorLoader getChatListCursorLoader(){
+
+		if(chatListCursorLoader==null){
+			Log.i("OMG","OMG");
+			Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ "chatlist");
+			chatListCursorLoader = new CursorLoader(getApplicationContext(),
+					uri, null, null, null, null);
+		}
+
+		return chatListCursorLoader;
+
+	}
+
+
+	public CursorLoader getTaskListCursorLoader(){
+
+		if(taskListCursorLoader==null){
+			Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ TasksContract.SQLITE_TABLE_NAME);
+			taskListCursorLoader = new CursorLoader(getApplicationContext(),
+					uri, null, null, null, null);
+		}
+
+		return taskListCursorLoader;
+
+	}
 
 
 
@@ -55,14 +206,15 @@ public class JewelChat extends BaseNetworkActivity {
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-		mSectionsPagerAdapter.addFrag(new FragmentChatList(), "Chat");
-		mSectionsPagerAdapter.addFrag(new FragmentGame(), "Game");
-		mSectionsPagerAdapter.addFrag(new FragmentTasks(), "Tasks");
-		mSectionsPagerAdapter.addFrag(new FragmentWallet(), "Wallet");
+		mSectionsPagerAdapter.addFrag( "Chat");
+		mSectionsPagerAdapter.addFrag( "Game");
+		mSectionsPagerAdapter.addFrag( "Wallet");
+		mSectionsPagerAdapter.addFrag( "Tasks");
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.container);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setOffscreenPageLimit(1);
 
 
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -101,6 +253,9 @@ public class JewelChat extends BaseNetworkActivity {
 			this.showNoInternetDialog();
 		}
 
+
+
+
 	}
 
 
@@ -115,6 +270,23 @@ public class JewelChat extends BaseNetworkActivity {
 	protected void onPause(){
 		super.onPause();
 		JewelChatApp.getBusInstance().unregister(this);
+
+		chatListCursorLoader=null;
+		taskListCursorLoader=null;
+
+		chatListAdapter=null;
+		tasksAdapter=null;
+
+		gameGridCellList=null;
+		gameGridAdapter=null;
+
+		gameView=null;
+		tasksView=null;
+		chatListView=null;
+		walletView=null;
+
+		System.gc();
+
 	}
 
 	@Override
@@ -139,9 +311,9 @@ public class JewelChat extends BaseNetworkActivity {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
-		private final List<Fragment> mFragmentList = new ArrayList<>();
+
 		private final List<String> mFragmentTitleList = new ArrayList<>();
 
 		public SectionsPagerAdapter(FragmentManager fm) {
@@ -150,20 +322,27 @@ public class JewelChat extends BaseNetworkActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a PlaceholderFragment (defined as a static inner class below).
-			return mFragmentList.get(position);
+			if(position==0)
+				return new FragmentChatList();
+			else if(position==1)
+				return new FragmentGame();
+			else if(position==2)
+				return new FragmentWallet();
+			else if(position==3)
+				return new FragmentTasks();
+
+			return null;
+
 		}
 
 		@Override
 		public int getCount() {
 
-			return mFragmentList.size();
+			return 4;
 		}
 
-		public void addFrag(Fragment fragment, String title) {
+		public void addFrag( String title) {
 
-			mFragmentList.add(fragment);
 			mFragmentTitleList.add(title);
 		}
 

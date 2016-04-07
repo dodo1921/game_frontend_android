@@ -195,6 +195,7 @@ public class JewelChatDataProvider extends ContentProvider {
 						projection,
 						selection, selectionArgs, null, null, sortOrder);
 
+				Log.i("Tasks>>>","Tasks");
 				// Sets the ContentResolver to watch this content URI for data changes
 				returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
 				return returnCursor;
@@ -244,16 +245,21 @@ public class JewelChatDataProvider extends ContentProvider {
 				id = db.insertOrThrow(ContactContract.SQLITE_TABLE_NAME, null, values);
 				Log.i("ID>>>>>>>>",""+id);
 				getContext().getContentResolver().notifyChange(uri, null);
-				getContext().getContentResolver().notifyChange(Uri.parse(CONTENT_URI + "/chatlist" ), null);
+				getContext().getContentResolver().notifyChange(Uri.parse(CONTENT_URI + "/chatlist"), null);
 				break;
 			}
 			case GROUP:{
 				id = db.insertOrThrow(GroupContract.SQLITE_TABLE_NAME, null, values);
-				getContext().getContentResolver().notifyChange(uri , null);
+				getContext().getContentResolver().notifyChange(uri, null);
 				break;
 			}
 			case GROUP_MESSAGE:{
 				id = db.insertOrThrow(GroupMessageContract.SQLITE_TABLE_NAME, null, values);
+				getContext().getContentResolver().notifyChange(uri , null);
+				break;
+			}
+			case TASKS:{
+				id = db.insertOrThrow(TasksContract.SQLITE_TABLE_NAME, null, values);
 				getContext().getContentResolver().notifyChange(uri , null);
 				break;
 			}
@@ -286,6 +292,10 @@ public class JewelChatDataProvider extends ContentProvider {
 				break;
 			case GROUP_MESSAGE:
 				count = db.delete(GroupMessageContract.SQLITE_TABLE_NAME, selection, selectionArgs);
+				getContext().getContentResolver().notifyChange(uri , null);
+				break;
+			case TASKS:
+				count = db.delete(TasksContract.SQLITE_TABLE_NAME, selection, selectionArgs);
 				getContext().getContentResolver().notifyChange(uri , null);
 				break;
 			default:

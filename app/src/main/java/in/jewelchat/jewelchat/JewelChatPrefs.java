@@ -31,7 +31,7 @@ public class JewelChatPrefs {
 
 
 
-	public static final String LEVEl = "level";
+	public static final String LEVEL = "level";
 	public static final String XP = "xp";
 	public static final String STORE_MAX = "storemax";
 	public static final String XP_MAX = "xpmax";

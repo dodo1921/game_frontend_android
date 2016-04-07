@@ -6,6 +6,7 @@
 
 	<ImageView
 		android:id="@+id/game_hidden_image"
+		android:src="@drawable/monalisa"
 		android:layout_width="300dp"
 		android:layout_height="400dp"
 		android:layout_alignParentTop="true"

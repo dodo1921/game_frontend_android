@@ -35,7 +35,7 @@ public class DialogJewelStore extends DialogFragment {
 
 	private void initialise() {
 
-
-
 	}
+
+
 }

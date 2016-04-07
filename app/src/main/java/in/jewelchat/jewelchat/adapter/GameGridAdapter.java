@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -65,6 +66,17 @@ public class GameGridAdapter extends BaseAdapter {
 		}else{
 			holder = (ViewHolder)convertView.getTag();
 		}
+
+		holder.imagepost.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				View parentrow = (View)v.getParent();
+				GridView gridView = (GridView) parentrow.getParent();
+				gridView.performItemClick(v, gridView.getPositionForView(parentrow), 0);
+
+			}
+		});
 
 		if(type == 'A'){
 			if(state)

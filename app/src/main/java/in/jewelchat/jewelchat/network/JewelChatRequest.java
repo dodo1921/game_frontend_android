@@ -50,11 +50,6 @@ public class JewelChatRequest extends JsonObjectRequest {
 
 
 		Map<String, String> headers = response.headers;
-		for(String i: headers.keySet()){
-			Log.i(">>>>"+i, headers.get(i));
-			Log.i("????"+i, headers.get(i).length()+"");
-		}
-
 		String cookie = (String) headers.get("Set-Cookie");
 		JewelChatApp.saveCookie(cookie);
 		return super.parseNetworkResponse(response);

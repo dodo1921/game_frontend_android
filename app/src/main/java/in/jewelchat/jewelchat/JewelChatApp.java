@@ -20,6 +20,7 @@ import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
 import in.jewelchat.jewelchat.models.UserPresence;
 import in.jewelchat.jewelchat.network.JewelChatSocket;
 import in.jewelchat.jewelchat.util.AnalyticsTrackers;
+import in.jewelchat.jewelchat.util.JewelChatImageGetter;
 import in.jewelchat.jewelchat.util.PresenceRunnable;
 import io.fabric.sdk.android.Fabric;
 
@@ -42,6 +43,8 @@ public class JewelChatApp extends Application {
 	private static Picasso mPicasso;
 	private static JewelChatSocket jcSocket;
 	private static final Bus BUS = new Bus();
+
+	private static JewelChatImageGetter imageGetter;
 
 	private static HashMap<Integer, UserPresence> contactPresence = new HashMap<Integer, UserPresence>();
 
@@ -142,10 +145,19 @@ public class JewelChatApp extends Application {
 				getSharedPref().getInt(JewelChatPrefs.D,0),
 				getSharedPref().getInt(JewelChatPrefs.Y,0),
 				getSharedPref().getInt(JewelChatPrefs.Z,0),
-				getSharedPref().getInt(JewelChatPrefs.LEVEl,0),
+				getSharedPref().getInt(JewelChatPrefs.LEVEL,0),
 				getSharedPref().getInt(JewelChatPrefs.XP_MAX,0),
 				getSharedPref().getInt(JewelChatPrefs.XP,0),
 				false);
+	}
+
+	public static JewelChatImageGetter getImageGetter(){
+
+		if(imageGetter == null)
+			imageGetter = new JewelChatImageGetter();
+
+		return imageGetter;
+
 	}
 
 	public static void loadContactPresence(){

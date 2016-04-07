@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class JewelChatDatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "JewelChatAppDB";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	private static JewelChatDatabaseHelper instance;
 
@@ -25,6 +25,7 @@ public class JewelChatDatabaseHelper extends SQLiteOpenHelper {
 		ChatMessageContract.onCreate(db);
 		GroupContract.onCreate(db);
 		GroupMessageContract.onCreate(db);
+		TasksContract.onCreate(db);
 
 	}
 
@@ -35,7 +36,7 @@ public class JewelChatDatabaseHelper extends SQLiteOpenHelper {
 		ChatMessageContract.onUpgrade(db, oldVersion, newVersion);
 		GroupContract.onUpgrade(db, oldVersion, newVersion);
 		GroupMessageContract.onUpgrade(db, oldVersion, newVersion);
-
+		TasksContract.onUpgrade(db, oldVersion, newVersion);
 	}
 
 	public static synchronized JewelChatDatabaseHelper getHelper(Context context)

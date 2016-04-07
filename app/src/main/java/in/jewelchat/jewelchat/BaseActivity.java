@@ -2,6 +2,7 @@ package in.jewelchat.jewelchat;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import in.jewelchat.jewelchat.screens.DialogJewelStore;
+import in.jewelchat.jewelchat.screens.DialogJewelStoreFull;
 import in.jewelchat.jewelchat.screens.DialogNoInternet;
 
 /**
@@ -31,11 +33,20 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 	protected DialogJewelStore jewelStoreDialog;
 	protected DialogNoInternet noInternetDialog;
 
-
+	protected DialogJewelStoreFull jewelStoreFull;
 
 	protected ViewGroup rootLayout;
 
 
+
+	public void jewelStoreFull(){
+
+		Snackbar snackbar = Snackbar
+				.make(rootLayout, "Jewel Store full", Snackbar.LENGTH_LONG);
+
+		snackbar.show();
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +79,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 	protected void onResume() {
 		JewelChatApp.appLog(className + ":onResume");
 		super.onResume();
-
-
-
 	}
 
 	@Override
@@ -82,6 +90,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 	protected void initialize() {
 
+	}
+
+	protected void showJewelStoreFullDialog(){
+
+		jewelStoreFull = new DialogJewelStoreFull();
+		jewelStoreFull.show(getFragmentManager(), "Jewel Store Full");
+		jewelStoreFull.setCancelable(true);
 	}
 
 	protected void showNoInternetDialog() {

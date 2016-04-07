@@ -3,67 +3,77 @@ package in.jewelchat.jewelchat.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import in.jewelchat.jewelchat.JewelChat;
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.JewelChatPrefs;
 import in.jewelchat.jewelchat.R;
-import in.jewelchat.jewelchat.adapter.GameGridAdapter;
-import in.jewelchat.jewelchat.models.GameGridCell;
 
 /**
  * Created by mayukhchakraborty on 02/03/16.
  */
 public class FragmentGame extends Fragment {
 
-	private List<GameGridCell> gameGridCellList;
-
 	private Button factory;
 	private Button market;
 
+	private static FragmentGame uniqueInstance;
+
+	/*
+
+	public static FragmentGame getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new FragmentGame();
+		return uniqueInstance;
+	}
+
+	*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+		View view = ((JewelChat)getActivity()).getFragmentGameView( inflater, container, savedInstanceState);
+
 		GridView gridView = (GridView) view.findViewById(R.id.gamegrid);
 
+		gridView.setAdapter(((JewelChat)getActivity()).getGameGridAdapter()); // uses the view to get the context instead of getActivity().
 
-		String board = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD,"");
-		String board_state = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD_STATE,"");
+		gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-		gameGridCellList = new ArrayList<GameGridCell>();
+				String board = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD, "");
+				String board_state = JewelChatApp.getSharedPref().getString(JewelChatPrefs.BOARD_STATE, "000000000000000000000000000000000000000000000000");
+				if (!board.equals("")) {
 
-		for(int i=0; i<48; i++){
+					char element = board.charAt(position);
+					char state = board_state.charAt(position);
 
-			GameGridCell t = new GameGridCell();
-			t.type = board.charAt(i);
-			if(board_state.charAt(i)== '0')
-				t.state = false;
-			else if(board_state.charAt(i)== '1')
-				t.state = true;
+					if (element == 'A' && state == '0')
+						((ImageView) view).setImageResource(R.drawable.ic_ac);
+					else if (element == 'B' && state == '0')
+						((ImageView) view).setImageResource(R.drawable.ic_bc);
 
-			gameGridCellList.add(t);
+				}
 
-
-		}
-
-		gridView.setAdapter(new GameGridAdapter(view.getContext(), gameGridCellList)); // uses the view to get the context instead of getActivity().
+			}
+		});
 
 		factory = (Button)view.findViewById(R.id.factory);
 		factory.setOnClickListener(new View.OnClickListener() {
@@ -91,4 +101,13 @@ public class FragmentGame extends Fragment {
 		return view;
 
 	}
+
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		Log.i("Fragment>>>","GAME Destroyed");
+
+	}
+
+
 }

@@ -35,6 +35,7 @@ public class TasksContract implements BaseColumns {
 	public static void onCreate(SQLiteDatabase db) {
 		Log.i("JewelChatTask", "OnCreate");
 		db.execSQL(DATABASE_CREATE);
+
 		/*
 		String insertquery1 =  "INSERT INTO Group (groupId,contactnumber,contactname,groupMessageChannel)"+
 				" values('4','+919005835705','Santanu','shantanuGroupChannel')";
@@ -44,6 +45,7 @@ public class TasksContract implements BaseColumns {
 				" values('4','+919005835706','Veeru','veeruGroupChannel')";
 		db.execSQL(insertquery2);
 		*/
+
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,

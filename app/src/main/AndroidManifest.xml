@@ -113,8 +113,29 @@
 		<service
 			android:name=".service.RegistrationIntentService"
 			android:exported="false"/>
-
-
+		<service
+			android:name="com.google.android.gms.analytics.AnalyticsService"
+			android:enabled="true"
+			android:exported="false"/>
+		<service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
+		<service
+			android:name=".service.FirstTimeContactDownloadService"
+			android:exported="false"/>
+		<service
+			android:name=".service.FirstTimeGroupListDownload"
+			android:exported="false"/>
+		<service
+			android:name=".service.GameStateLoadService"
+			android:exported="false"/>
+		<service
+			android:name=".service.GroupUpdateService"
+			android:exported="false"/>
+		<service
+			android:name=".service.MyShopUpdateService"
+			android:exported="false"/>
+		<service
+			android:name=".service.PhoneBookContactUpdateService"
+			android:exported="false"/>
 
 		<!-- Receivers -->
 		<receiver
@@ -124,11 +145,6 @@
 				<action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
 			</intent-filter>
 		</receiver>
-		<service
-			android:name="com.google.android.gms.analytics.AnalyticsService"
-			android:enabled="true"
-			android:exported="false"/>
-		<service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
 		<receiver
 			android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
 			android:exported="true">
@@ -160,6 +176,11 @@
 				<category android:name="in.jewelchat.jewelchat" />
 			</intent-filter>
 		</receiver>
+		<provider
+			android:name=".database.JewelChatDataProvider"
+			android:authorities="in.jewelchat.jewelchat"
+			android:exported="false" >
+		</provider>
 
     </application>
 

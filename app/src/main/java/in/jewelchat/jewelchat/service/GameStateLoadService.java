@@ -94,7 +94,7 @@ public class GameStateLoadService extends IntentService implements Response.Erro
 
 			SharedPreferences.Editor editor = JewelChatApp.getSharedPref().edit();
 			editor.putBoolean(JewelChatPrefs.IS_LOGGED,true);
-			editor.putInt(JewelChatPrefs.LEVEl, user.level);
+			editor.putInt(JewelChatPrefs.LEVEL, user.level);
 			editor.putInt(JewelChatPrefs.XP_MAX, user.xp_max);
 			editor.putInt(JewelChatPrefs.XP, user.xp);
 			editor.putInt(JewelChatPrefs.STORE_MAX, user.store_max);

@@ -1,12 +1,17 @@
 package in.jewelchat.jewelchat.screens;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import in.jewelchat.jewelchat.JewelChat;
 import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.database.JewelChatDataProvider;
+import in.jewelchat.jewelchat.database.TasksContract;
 import in.jewelchat.jewelchat.service.FirstTimeContactDownloadService;
 
 /**
@@ -18,6 +23,11 @@ public class ActivityTutorial extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
+
+
+
+
+		Log.i(">>Task", "Inserted");
 
 		Intent service = new Intent(getApplicationContext(), FirstTimeContactDownloadService.class);
 		startService(service);

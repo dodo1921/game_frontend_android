@@ -34,7 +34,7 @@
             android:id="@+id/task_main"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="25dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true">
 
@@ -51,6 +51,7 @@
                 android:layout_alignParentLeft="true"/>
 
             <TextView
+                android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -83,7 +84,7 @@
 
             <com.daasuu.ahp.AnimateHorizontalProgressBar
                 android:id="@+id/animate_progress_bar"
-                android:layout_width="280dp"
+                android:layout_width="250dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
@@ -119,6 +120,7 @@
             android:text="Claim Diamond"/>
 
         <TextView
+            android:id="@+id/next_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Level 6"

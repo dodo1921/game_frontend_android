@@ -3,43 +3,29 @@ package in.jewelchat.jewelchat.service;
 import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import in.jewelchat.jewelchat.JewelChatApp;
-import in.jewelchat.jewelchat.JewelChatPrefs;
-import in.jewelchat.jewelchat.JewelChatURLS;
 import in.jewelchat.jewelchat.database.ContactContract;
-import in.jewelchat.jewelchat.database.GroupContract;
 import in.jewelchat.jewelchat.database.JewelChatDataProvider;
-import in.jewelchat.jewelchat.models.Group;
-import in.jewelchat.jewelchat.models.GroupMember;
-import in.jewelchat.jewelchat.network.JewelChatRequest;
+import in.jewelchat.jewelchat.database.TasksContract;
 import in.jewelchat.jewelchat.util.AnalyticsTrackers;
-import in.jewelchat.jewelchat.util.NetworkConnectivityStatus;
 
 /**
  * Created by mayukhchakraborty on 23/03/16.
@@ -57,9 +43,13 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
+		Log.i(">>FirstTimeContact","FirstTimeContact");
+
 		JewelChatApp.appLog("FirstTimeContactDownloadService"+":onHandleIntent");
 
-		Set<PhoneBookContact> phoneBookContactsSet = new HashSet<>();
+
+
+		Set<PhoneBookContact> phoneBookContactsSet = new HashSet<PhoneBookContact>();
 		Set<Long> phoneNumbers = new HashSet<>();
 		phoneNumbers.add(919005835708L);
 
@@ -76,6 +66,8 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		if (cursor == null) {
 			return;
 		}
+
+		Log.i("Here","Here");
 		Phonenumber.PhoneNumber pn;
 		PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 		String phoneStr;
@@ -117,7 +109,7 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 			cv[count].put(ContactContract.PHONEBOOK_CONTACT_NAME, i.contactName);
 			cv[count].put(ContactContract.IMAGE_PHONEBOOK, i.contactImage);
 			cv[count].put(ContactContract.IS_PHONEBOOK_CONTACT, 1);
-
+			count++;
 		}
 
 		cv[count] = new ContentValues();
@@ -132,6 +124,8 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		getContentResolver().delete(uri, null, null);
 		getContentResolver().bulkInsert(uri, cv);
 
+
+
 		AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP)
 				.send(new HitBuilders.EventBuilder()
 						.setCategory("Initialization")
@@ -139,8 +133,17 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 						.setLabel("Initialization Success")
 						.build());
 
+		ContentValues t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 1);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x) <img src = 'A'>");
+		t1.put(TasksContract.DIAMOND_COUNT, 1);
+		t1.put(TasksContract.TASK_NOTE, "");
 
-
+		Uri uritask = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ TasksContract.SQLITE_TABLE_NAME);
+		getContentResolver().delete(uritask, null, null);
+		getContentResolver().insert(uritask, t1);
 
 	}
 
