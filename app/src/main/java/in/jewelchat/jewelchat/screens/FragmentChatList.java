@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -58,7 +59,15 @@ public class FragmentChatList extends Fragment implements LoaderManager.LoaderCa
 		listView = (ListView)view.findViewById(R.id.chat_list);
 		listView.setAdapter(((JewelChat)getActivity()).getChatListAdapter());
 
-		//this.listView.setOnItemClickListener(this);
+		this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				Intent i = new Intent(getActivity(), ActivityChat.class);
+				startActivity(i);
+
+			}
+		});
 		//this.listView.setOnItemLongClickListener(this);
 		//this.listView.setLongClickable(true);
 
@@ -110,7 +119,7 @@ public class FragmentChatList extends Fragment implements LoaderManager.LoaderCa
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
 
-		((JewelChat)getActivity()).getChatListAdapter().swapCursor(null);
+		((JewelChat) getActivity()).getChatListAdapter().swapCursor(null);
 
 	}
 
@@ -120,6 +129,5 @@ public class FragmentChatList extends Fragment implements LoaderManager.LoaderCa
 		Log.i("Fragment>>>", "CHATLIST Destroyed");
 
 	}
-
 
 }

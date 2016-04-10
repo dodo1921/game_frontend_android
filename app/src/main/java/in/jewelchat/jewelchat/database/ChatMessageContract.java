@@ -54,7 +54,7 @@ public class ChatMessageContract implements BaseColumns {
 			IS_SUBMITTED + "  INTEGER" + "," +
 			TIME_SUBMITTED + "  INTEGER" + "," +
 			IS_GROUP_MSG + "  INTEGER" + "," +
-			JEWEL_TYPE + "  INTEGER" + "," +
+			JEWEL_TYPE + "  TEXT" + "," +
 			IS_JEWEL_PICKED + "  INTEGER" + "," +
 			MSG_TEXT + "  TEXT" + "," +
 			IMAGE_BLOB + "  BLOB" + "," +

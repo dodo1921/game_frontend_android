@@ -11,7 +11,7 @@
                 android:id="@+id/chatlist_element" >
 
     <ImageView
-        android:id="@+id/contact_image_chatlist"
+        android:id="@+id/contact_image"
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_alignParentLeft="true"
@@ -24,20 +24,20 @@
         android:id="@+id/contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/contact_image_chatlist"
+        android:layout_alignTop="@+id/contact_image"
         android:layout_marginBottom="5dp"
-        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:layout_toRightOf="@+id/contact_image"
         android:ellipsize="end"
         android:lines="1"
         android:text="Mayukh"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/contact_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:layout_toRightOf="@+id/contact_image"
         android:layout_below="@id/contact_name"
         android:ellipsize="end"
         android:lines="1"

@@ -2,17 +2,76 @@ package in.jewelchat.jewelchat.screens;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.otto.Subscribe;
+
+import in.jewelchat.jewelchat.BaseNetworkActivity;
+import in.jewelchat.jewelchat.JewelChatApp;
+import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
 
 /**
  * Created by mayukhchakraborty on 05/03/16.
  */
-public class ActivityChat extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, android.widget.AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener  {
+public class ActivityChat extends BaseNetworkActivity implements LoaderManager.LoaderCallbacks<Cursor>, android.widget.AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener  {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_chat);
+
+		rootLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+
+		setUpAppbar();
+
+		TextView toolbar_title = (TextView)rootLayout.findViewById(R.id.toolbarTitle);
+		toolbar_title.setText("");
+
+		ImageView toolbar_image = (ImageView)rootLayout.findViewById(R.id.toolbarImage);
+		//toolbar_image.setImageURI(Uri.parse());
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+	}
+
+
+	@Override
+	protected void onResume(){
+		super.onResume();
+		JewelChatApp.getBusInstance().register(this);
+		JewelChatApp.getBusInstance().post(JewelChatApp.produceJewelChangeEvent());
+	}
+
+	@Override
+	protected void onPause(){
+		super.onPause();
+		JewelChatApp.getBusInstance().unregister(this);
+	}
+
+
+	@Subscribe
+	public void onBasicJewelCountChanged( BasicJewelCountChangedEvent event) {
+
+		A.setText(event.A+"");
+		B.setText(event.B+"");
+		C.setText(event.C+"");
+		D.setText(event.D+"");
+		LEVEL.setText(event.LEVEL+"");
+		XP.setMax(event.LEVEL_XP);XP.setProgress(event.XP);
+		LEVEL_SCORE.setText(event.XP+"/"+event.LEVEL_XP);
+
+	}
+
+
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		return null;
@@ -49,5 +108,10 @@ public class ActivityChat extends AppCompatActivity implements LoaderManager.Loa
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+
 	}
 }

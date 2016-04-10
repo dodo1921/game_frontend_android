@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import in.jewelchat.jewelchat.JewelChatApp;
+import in.jewelchat.jewelchat.database.ChatMessageContract;
 import in.jewelchat.jewelchat.database.ContactContract;
 import in.jewelchat.jewelchat.database.JewelChatDataProvider;
 import in.jewelchat.jewelchat.database.TasksContract;
@@ -109,13 +110,14 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 			cv[count].put(ContactContract.PHONEBOOK_CONTACT_NAME, i.contactName);
 			cv[count].put(ContactContract.IMAGE_PHONEBOOK, i.contactImage);
 			cv[count].put(ContactContract.IS_PHONEBOOK_CONTACT, 1);
+			cv[count].put(ContactContract.IS_INVITED, 0);
 			count++;
 		}
 
 		cv[count] = new ContentValues();
 		cv[count].put(ContactContract.CONTACT_NUMBER, JewelChatApp.TEAM_JEWELCHAT);
 		cv[count].put(ContactContract.CONTACT_NAME, "JewelChat Team");
-		cv[count].put(ContactContract.JEWELCHAT_ID, 2);
+		cv[count].put(ContactContract.JEWELCHAT_ID, JewelChatApp.TEAM_JEWELCHAT_ID);
 		cv[count].put(ContactContract.IMAGE_PHONEBOOK, "");
 		cv[count].put(ContactContract.IS_REGIS, 1);
 		cv[count].put(ContactContract.IS_PHONEBOOK_CONTACT, 0);
@@ -123,6 +125,26 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ContactContract.SQLITE_TABLE_NAME);
 		getContentResolver().delete(uri, null, null);
 		getContentResolver().bulkInsert(uri, cv);
+
+
+		ContentValues msg1 = new ContentValues();
+		msg1.put(ChatMessageContract.MSG_TYPE, 0);
+		msg1.put(ChatMessageContract.CREATED_TIME, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.CHAT_ROOM, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.CREATOR_ID, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.RECEIVED_MSG_ID, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.IS_SUBMITTED, 1);
+		msg1.put(ChatMessageContract.IS_DELIVERED, 1);
+		msg1.put(ChatMessageContract.IS_READ, 1);
+		msg1.put(ChatMessageContract.JEWEL_TYPE, "A");
+		msg1.put(ChatMessageContract.IS_JEWEL_PICKED, 0);
+		msg1.put(ChatMessageContract.MSG_TEXT, "Welcome to Jewel Chat.");
+
+
+
+		Uri urimsg = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
+		getContentResolver().delete(urimsg, null, null);
+		getContentResolver().insert(urimsg, msg1);
 
 
 
@@ -137,7 +159,7 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		t1.put(TasksContract.TASK_ID, 1);
 		t1.put(TasksContract.TYPE, 1);
 		t1.put(TasksContract.VALUE, 1);
-		t1.put(TasksContract.TASK_TEXT, "Pick (x) <img src = 'A'>");
+		t1.put(TasksContract.TASK_TEXT, "Pick (x) <img src = 'A'>." );
 		t1.put(TasksContract.DIAMOND_COUNT, 1);
 		t1.put(TasksContract.TASK_NOTE, "");
 
@@ -150,20 +172,10 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 	@Override
 	public void onErrorResponse(VolleyError error) {
 
-
-
 	}
 
 	@Override
 	public void onResponse(JSONObject response) {
-
-
-
-
-
-
-
-
 
 	}
 

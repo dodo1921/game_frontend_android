@@ -76,7 +76,7 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_bc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
@@ -89,7 +89,7 @@
             android:layout_height="25dp"/>
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_cc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
@@ -102,7 +102,7 @@
             android:layout_height="25dp"/>
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_dc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 

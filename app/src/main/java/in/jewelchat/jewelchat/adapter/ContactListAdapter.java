@@ -2,8 +2,8 @@ package in.jewelchat.jewelchat.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.text.format.DateUtils;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,9 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.database.ContactContract;
 
 /**
  * Created by mayukhchakraborty on 01/04/16.
@@ -28,7 +30,7 @@ public class ContactListAdapter extends CursorAdapter {
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-		View retView = inflater.inflate(R.layout.fragment_chat_element, parent, false);
+		View retView = inflater.inflate(R.layout.activity_contacts_elements, parent, false);
 
 		return retView;
 
@@ -37,44 +39,52 @@ public class ContactListAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 
-		TextView contactname = (TextView) view.findViewById(R.id.contact_name);
-		contactname.setText(cursor.getString(1));
-		//TextView lastpost = (TextView) view.findViewById(R.id.lastpost);
-		int msgtype = cursor.getInt(10);
-		String post=" ";
-		if(msgtype==0){
-			post = cursor.getString(12);
-		}else if(msgtype==2){
-			post = "Image";
-		}else if(msgtype==3)
-			post = "Video";
-		//lastpost.setText(post);
-		TextView lastposttime = (TextView) view.findViewById(R.id.lastposttime);
-		long time = cursor.getLong(12);
-		//lastposttime.setText(DateUtils.getRelativeDateTimeString(context, time, DateUtils.SECOND_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_ABBREV_ALL));
-		lastposttime.setText(DateUtils.getRelativeTimeSpanString(context, time));
+		long contact_number = cursor.getLong(cursor.getColumnIndex(ContactContract.CONTACT_NUMBER));
+		String contact_name = cursor.getString(cursor.getColumnIndex(ContactContract.PHONEBOOK_CONTACT_NAME));
+		String jewelchat_contact_name = cursor.getString(cursor.getColumnIndex(ContactContract.CONTACT_NAME));
+		String image_phonebook = cursor.getString(cursor.getColumnIndex(ContactContract.IMAGE_PHONEBOOK));
+		int is_invited = cursor.getInt(cursor.getColumnIndex(ContactContract.IS_INVITED));
 
-		//TextView lastposttime = (TextView) view.findViewById(R.id.lastposttime);
-		//lastposttime.setText(cursor.getString(0));
-		ImageView image = (ImageView) view.findViewById(R.id.contact_image_chatlist);
-		String imagepath = cursor.getString(4);
-		int contactnumber = cursor.getInt(2);
-		/*
-		try {
-			//Picasso.with(context).load("http://"+ JewelChatURLS.CLOUDPATH+"/"+ URLEncoder.encode(contactnumber+"_"+imagepath, "utf-8")).placeholder(R.drawable.default_image).error(R.drawable.default_image).into(image);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ImageView vContactAvatar = (ImageView)view.findViewById(R.id.contact_image);
+		TextView vContactName = (TextView)view.findViewById(R.id.contact_name);
+		TextView vContactNumber = (TextView)view.findViewById(R.id.contact_number);
+		TextView vInviteButton = (TextView)view.findViewById(R.id.contact_item_invite);
+
+		if(is_invited==1) {
+			vInviteButton.setVisibility(View.GONE);
+			vInviteButton.setOnClickListener(null);
+		}else{
+			vInviteButton.setVisibility(View.VISIBLE);
+			vInviteButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+				}
+			});
+
 		}
-		*/
 
-		int isread = cursor.getInt(13);
-		int creatorid = cursor.getInt(15);
-		int chatroom = cursor.getInt(16);
-		if(creatorid == chatroom && isread==0)
-			view.setBackgroundColor(Color.argb(75, 51, 153, 255));
-		else if(creatorid == chatroom && isread==1)
-			view.setBackgroundColor(Color.argb(0, 0, 0, 0));
+		if(!(image_phonebook==null) && !image_phonebook.equals(""))
+			vContactAvatar.setImageURI(Uri.parse(image_phonebook));
+		else {
+			vContactAvatar.setBackgroundColor(ContextCompat.getColor(JewelChatApp.getInstance().getApplicationContext(), R.color.grey_light));
+			vContactAvatar.setImageResource(R.drawable.default_profile);
+		}
+
+		if( contact_name==null || contact_name.equals("") ){
+			if(jewelchat_contact_name!=null && !jewelchat_contact_name.equals("")){
+				vContactName.setText(jewelchat_contact_name);
+				vContactNumber.setText("+" + contact_number);
+			}else{
+				vContactName.setText("+"+contact_number);
+				vContactNumber.setText("");
+			}
+		}else{
+			vContactName.setText(contact_name);
+			vContactNumber.setText("+" + contact_number);
+		}
+
+
 
 	}
 }

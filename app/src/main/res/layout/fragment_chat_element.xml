@@ -7,16 +7,19 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="5dp"
                 android:paddingTop="10dp"
+                android:background="@color/white"
                 android:descendantFocusability="blocksDescendants"
                 android:id="@+id/chatlist_element" >
 
     <ImageView
-        android:id="@+id/contact_image_chatlist"
+        android:id="@+id/contact_image"
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="15dp"
+        android:src="@drawable/default_profile"
+        android:background="@color/grey_light"
         android:adjustViewBounds="true"
         android:focusable="false" />
 
@@ -24,24 +27,24 @@
         android:id="@+id/contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/contact_image_chatlist"
+        android:layout_alignTop="@+id/contact_image"
         android:layout_marginBottom="5dp"
-        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:layout_toRightOf="@+id/contact_image"
         android:ellipsize="end"
         android:lines="1"
         android:text="+919005835708"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <github.ankushsachdeva.emojicon.EmojiconTextView
         android:id="@+id/lastpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/contact_image_chatlist"
+        android:layout_toRightOf="@+id/contact_image"
         android:layout_below="@id/contact_name"
         android:ellipsize="end"
         android:lines="1"
-        android:text="last post"
+        android:text=""
         android:textColor="#666"
         android:textSize="14sp" />
 

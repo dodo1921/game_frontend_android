@@ -2,7 +2,6 @@ package in.jewelchat.jewelchat.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
 
 /**
@@ -37,8 +37,25 @@ public class ChatListAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 
-		TextView contactname = (TextView) view.findViewById(R.id.contact_name);
-		contactname.setText(cursor.getString(1));
+
+		ImageView vContactAvatar = (ImageView)view.findViewById(R.id.contact_image);
+		TextView vContactName = (TextView)view.findViewById(R.id.contact_name);
+		TextView vMsgTime = (TextView)view.findViewById(R.id.lastposttime);
+
+
+		int jewel_id = cursor.getInt(0);
+		String contact_name = cursor.getString(1);
+		long contact_number = cursor.getInt(2);
+		long time = cursor.getInt(12);
+
+		if(jewel_id == JewelChatApp.TEAM_JEWELCHAT_ID)
+			vContactAvatar.setImageResource(R.drawable.jewelchat_logo);
+
+		vContactName.setText(contact_name);
+		vMsgTime.setText(DateUtils.getRelativeTimeSpanString(context, time));
+
+
+		/*
 		//TextView lastpost = (TextView) view.findViewById(R.id.lastpost);
 		int msgtype = cursor.getInt(10);
 		String post=" ";
@@ -66,8 +83,6 @@ public class ChatListAdapter extends CursorAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
-
 		int isread = cursor.getInt(13);
 		int creatorid = cursor.getInt(15);
 		int chatroom = cursor.getInt(16);
@@ -75,6 +90,8 @@ public class ChatListAdapter extends CursorAdapter {
 			view.setBackgroundColor(Color.argb(75, 51, 153, 255));
 		else if(creatorid == chatroom && isread==1)
 			view.setBackgroundColor(Color.argb(0, 0, 0, 0));
+
+		*/
 
 	}
 }

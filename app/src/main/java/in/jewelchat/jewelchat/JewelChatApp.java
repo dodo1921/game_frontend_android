@@ -35,6 +35,9 @@ public class JewelChatApp extends Application {
 
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final long TEAM_JEWELCHAT =  919005835708l;
+	public static final long TEAM_JEWELCHAT_ID =  2;
+
+
 
 	private static JewelChatApp mInstance;
 	private static RequestQueue mRequestQueue;

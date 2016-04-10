@@ -20,6 +20,7 @@ import in.jewelchat.jewelchat.BaseNetworkActivity;
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
 import in.jewelchat.jewelchat.adapter.ContactListAdapter;
+import in.jewelchat.jewelchat.database.ContactContract;
 import in.jewelchat.jewelchat.database.JewelChatDataProvider;
 import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
 
@@ -95,7 +96,7 @@ public class ActivityContacts extends BaseNetworkActivity implements LoaderManag
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ "chatlist");
+		Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ContactContract.SQLITE_TABLE_NAME);
 		CursorLoader cursorLoader = new CursorLoader(getApplicationContext(),
 				uri, null, null, null, null);
 		return cursorLoader;

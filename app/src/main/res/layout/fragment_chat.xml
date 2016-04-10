@@ -3,6 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:background="#fbfbfb"
              tools:context="in.jewelchat.jewelchat.JewelChat$FragmentChat">
 
 	<ListView
@@ -10,6 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true">
+
 	</ListView>
 
 	<!--android.support.design.widget.FloatingActionButton
