@@ -32,7 +32,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:layout_below="@+id/gamegrid"
-		android:gravity="center">
+		android:gravity="center_horizontal">
 
 		<Button
 			android:id="@+id/factory"
@@ -45,6 +45,7 @@
 			android:paddingRight="16dp"
 			android:layout_marginRight="5dp"
 			android:text="Factory"
+			android:drawableLeft="@drawable/ic_factory"
 			android:textAllCaps="false"
 			android:textColor="@color/white"
 			android:textSize="22sp"/>
@@ -60,6 +61,7 @@
 			android:paddingRight="16dp"
 			android:layout_marginLeft="5dp"
 			android:text="Market"
+			android:drawableLeft="@drawable/ic_market"
 			android:textAllCaps="false"
 			android:textColor="@color/white"
 			android:textSize="22sp"/>

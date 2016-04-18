@@ -3,8 +3,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_margin="10dp"
-                android:background="@color/primary_light"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
@@ -43,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pick 11 triangles each from 5 users "
-                android:textStyle="bold"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:textColor="@color/primary_dark"
@@ -103,22 +100,30 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/claim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_states"
+        <RelativeLayout
+            android:id="@+id/claim_parent"
             android:layout_below="@+id/progress_bar"
             android:layout_marginRight="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
-            android:textColor="@color/accent"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:textSize="18sp"
-            android:enabled="false"
-            android:textAllCaps="false"
-            android:text="Claim Diamond"/>
+            android:layout_alignParentLeft="true"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/claim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_states"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/accent"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textSize="15sp"
+                android:enabled="false"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"
+                android:text="Claim Diamond"/>
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/next_level"
@@ -128,10 +133,10 @@
             android:textSize="18dp"
             android:padding="5dp"
             android:background="@color/green"
-            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="12dp"
             android:textColor="@color/white"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/claim"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/claim_parent"/>
 
 </RelativeLayout>

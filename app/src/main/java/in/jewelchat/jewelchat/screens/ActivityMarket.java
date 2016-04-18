@@ -5,19 +5,30 @@ import android.support.design.widget.CoordinatorLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import in.jewelchat.jewelchat.BaseNetworkActivity;
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
+import in.jewelchat.jewelchat.adapter.MarketAdapter;
 import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
+import in.jewelchat.jewelchat.models.MarketItem;
 
 /**
  * Created by mayukhchakraborty on 06/03/16.
  */
 public class ActivityMarket extends BaseNetworkActivity {
+
+	ListView marketListView;
+	List<MarketItem> marketList;
+
+	MarketAdapter marketAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +43,48 @@ public class ActivityMarket extends BaseNetworkActivity {
 		toolbar_title.setText("Market");
 
 		ImageView toolbar_image = (ImageView)rootLayout.findViewById(R.id.toolbarImage);
-		toolbar_image.setVisibility(ImageView.GONE);
+		toolbar_image.setImageResource(R.drawable.ic_market);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+		marketListView = (ListView)rootLayout.findViewById(R.id.market_list);
+		marketList = new ArrayList<MarketItem>();
+		marketList.add(new MarketItem(R.drawable.ic_aac));
+		marketList.add(new MarketItem(R.drawable.ic_bbc));
+		marketList.add(new MarketItem(R.drawable.ic_ccc));
+		marketList.add(new MarketItem(R.drawable.ic_ddc));
+		marketList.add(new MarketItem(R.drawable.ic_eec));
+		marketList.add(new MarketItem(R.drawable.ic_ffc));
+		marketList.add(new MarketItem(R.drawable.ic_ggc));
+		marketList.add(new MarketItem(R.drawable.ic_hhc));
+		marketList.add(new MarketItem(R.drawable.ic_ec));
+		marketList.add(new MarketItem(R.drawable.ic_fc));
+		marketList.add(new MarketItem(R.drawable.ic_gc));
+		marketList.add(new MarketItem(R.drawable.ic_hc));
+		marketList.add(new MarketItem(R.drawable.ic_ic));
+		marketList.add(new MarketItem(R.drawable.ic_jc));
+		marketList.add(new MarketItem(R.drawable.ic_kc));
+		marketList.add(new MarketItem(R.drawable.ic_lc));
+		marketList.add(new MarketItem(R.drawable.ic_mc));
+		marketList.add(new MarketItem(R.drawable.ic_nc));
+		marketList.add(new MarketItem(R.drawable.ic_oc));
+		marketList.add(new MarketItem(R.drawable.ic_pc));
+		marketList.add(new MarketItem(R.drawable.ic_qc));
+		marketList.add(new MarketItem(R.drawable.ic_rc));
+		marketList.add(new MarketItem(R.drawable.ic_sc));
+		marketList.add(new MarketItem(R.drawable.ic_tc));
+		marketList.add(new MarketItem(R.drawable.ic_uc));
+		marketList.add(new MarketItem(R.drawable.ic_vc));
+		marketList.add(new MarketItem(R.drawable.ic_wc));
+		marketList.add(new MarketItem(R.drawable.ic_xc));
+
+
+
+
+		marketAdapter = new MarketAdapter(this, marketList);
+
+		marketListView.setAdapter(marketAdapter);
 
 	}
 

@@ -77,7 +77,7 @@ public class JewelChatDataProvider extends ContentProvider {
 						ChatMessageContract.SQLITE_TABLE_NAME,
 						projection,
 						selection, selectionArgs, null, null, sortOrder);
-
+				Log.i(">>", "Here");
 				// Sets the ContentResolver to watch this content URI for data changes
 				//MergeCursor mcursor = new MergeCursor(new Cursor[]{returnCursor});
 				returnCursor.setNotificationUri(getContext().getContentResolver(), uri);

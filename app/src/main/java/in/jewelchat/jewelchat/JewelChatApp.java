@@ -143,8 +143,8 @@ public class JewelChatApp extends Application {
 		// Provide an initial value for location based on the last known position.
 		return new BasicJewelCountChangedEvent(
 				getSharedPref().getInt(JewelChatPrefs.A,0),
-				getSharedPref().getInt(JewelChatPrefs.B,0),
 				getSharedPref().getInt(JewelChatPrefs.C,0),
+				getSharedPref().getInt(JewelChatPrefs.B,0),
 				getSharedPref().getInt(JewelChatPrefs.D,0),
 				getSharedPref().getInt(JewelChatPrefs.Y,0),
 				getSharedPref().getInt(JewelChatPrefs.Z,0),

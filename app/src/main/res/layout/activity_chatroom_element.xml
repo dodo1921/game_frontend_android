@@ -4,7 +4,7 @@
                 android:layout_height="wrap_content"
                 android:descendantFocusability="blocksDescendants"
                 android:id="@+id/chatlist_element"
-                android:background="@color/white" >
+                android:background="#ffffffff" >
 
     <TextView
         android:id="@+id/day"
@@ -18,7 +18,7 @@
         android:visibility="gone" />
 
 	<TextView
-		android:id="@+id/messages"
+		android:id="@+id/system_messages"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textColor="@color/primary_dark"
@@ -36,7 +36,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="left"
 		android:paddingRight="5dp"
-		android:layout_below="@+id/messages">
+		android:layout_below="@+id/system_messages">
 
 		<ImageView
 			android:id="@+id/jewel"

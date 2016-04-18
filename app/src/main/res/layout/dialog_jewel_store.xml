@@ -10,6 +10,7 @@
               android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/heading"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="JEWEL STORE"
@@ -46,6 +47,7 @@
             app:ahp_progressColor="@color/primary_dark" />
 
         <TextView
+            android:id="@+id/store_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -55,6 +57,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/row1"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -67,6 +70,7 @@
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/A"
             android:textSize="20sp"
             android:gravity="left"
             android:text="8"
@@ -81,12 +85,14 @@
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/B"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_cc"
@@ -94,12 +100,14 @@
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/C"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_dc"
@@ -107,6 +115,7 @@
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/D"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -136,11 +145,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_aac"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/a"
             android:textSize="20sp"
             android:gravity="left"
             android:text="0"
@@ -150,37 +160,42 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_bbc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/b"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ccc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/c"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ddc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/d"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -199,11 +214,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_eec"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/e"
             android:textSize="20sp"
             android:gravity="left"
             android:text="9"
@@ -213,37 +229,42 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ffc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/f"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ggc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/g"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_hhc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/h"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -272,11 +293,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ec"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/E"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -286,60 +308,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_fc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
+            android:id="@+id/F"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -349,37 +323,27 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_gc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/G"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_hc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
+            android:id="@+id/H"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -398,11 +362,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_ic"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/I"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -412,60 +377,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_jc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
+            android:id="@+id/J"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -475,37 +392,27 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_kc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/K"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_lc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
-            android:textSize="20sp"
-            android:gravity="left"
-            android:text="88"
-            android:layout_marginRight="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-
-        <TextView
+            android:id="@+id/L"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -524,11 +431,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_mc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/M"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -538,37 +446,42 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_nc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/N"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_oc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/O"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_pc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/P"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -587,11 +500,12 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_qc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/Q"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
@@ -601,37 +515,111 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_rc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/R"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_sc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/S"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"
             android:layout_marginRight="10dp"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_ac"
+            android:src="@drawable/ic_tc"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
 
         <TextView
+            android:id="@+id/T"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="88"
+            android:layout_marginRight="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_uc"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <TextView
+            android:id="@+id/U"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="88"
+            android:layout_marginRight="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_vc"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <TextView
+            android:id="@+id/V"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="88"
+            android:layout_marginRight="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_wc"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <TextView
+            android:id="@+id/W"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="88"
+            android:layout_marginRight="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_xc"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <TextView
+            android:id="@+id/X"
             android:textSize="20sp"
             android:gravity="left"
             android:text="88"

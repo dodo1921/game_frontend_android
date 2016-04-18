@@ -9,6 +9,6 @@
 		android:layout_width="320dp"
 		android:layout_height="320dp"
 		android:layout_centerInParent="true"
-		android:src="@drawable/jewelchat_logo"/>
+		android:src="@mipmap/ic_launcher_jewelchat"/>
 
 </RelativeLayout>

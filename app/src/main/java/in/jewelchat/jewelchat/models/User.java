@@ -46,5 +46,6 @@ public class User {
 	public String board;
 	public String board_state;
 	public int game_image;
+	//public String GCM_TOKEN;
 
 }

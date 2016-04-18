@@ -140,10 +140,62 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 		msg1.put(ChatMessageContract.IS_JEWEL_PICKED, 0);
 		msg1.put(ChatMessageContract.MSG_TEXT, "Welcome to Jewel Chat.");
 
-
-
 		Uri urimsg = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
 		getContentResolver().delete(urimsg, null, null);
+		getContentResolver().insert(urimsg, msg1);
+
+
+		msg1 = new ContentValues();
+		msg1.put(ChatMessageContract.MSG_TYPE, 0);
+		msg1.put(ChatMessageContract.CREATED_TIME, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.CHAT_ROOM, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.CREATOR_ID, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.RECEIVED_MSG_ID, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.IS_SUBMITTED, 1);
+		msg1.put(ChatMessageContract.IS_DELIVERED, 1);
+		msg1.put(ChatMessageContract.IS_READ, 1);
+		msg1.put(ChatMessageContract.JEWEL_TYPE, "B");
+		msg1.put(ChatMessageContract.IS_JEWEL_PICKED, 0);
+		msg1.put(ChatMessageContract.MSG_TEXT, "Welcome to Jewel Chat.");
+
+		//urimsg = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
+		//getContentResolver().delete(urimsg, null, null);
+		getContentResolver().insert(urimsg, msg1);
+
+
+		msg1 = new ContentValues();
+		msg1.put(ChatMessageContract.MSG_TYPE, 0);
+		msg1.put(ChatMessageContract.CREATED_TIME, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.CHAT_ROOM, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.CREATOR_ID, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.RECEIVED_MSG_ID, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.IS_SUBMITTED, 1);
+		msg1.put(ChatMessageContract.IS_DELIVERED, 1);
+		msg1.put(ChatMessageContract.IS_READ, 1);
+		msg1.put(ChatMessageContract.JEWEL_TYPE, "C");
+		msg1.put(ChatMessageContract.IS_JEWEL_PICKED, 0);
+		msg1.put(ChatMessageContract.MSG_TEXT, "Welcome to Jewel Chat.");
+
+		//Uri urimsg = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
+		//getContentResolver().delete(urimsg, null, null);
+		getContentResolver().insert(urimsg, msg1);
+
+
+		msg1 = new ContentValues();
+		msg1.put(ChatMessageContract.MSG_TYPE, 0);
+		msg1.put(ChatMessageContract.CREATED_TIME, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.CHAT_ROOM, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.CREATOR_ID, JewelChatApp.TEAM_JEWELCHAT_ID);
+		msg1.put(ChatMessageContract.RECEIVED_MSG_ID, System.currentTimeMillis());
+		msg1.put(ChatMessageContract.IS_SUBMITTED, 1);
+		msg1.put(ChatMessageContract.IS_DELIVERED, 1);
+		msg1.put(ChatMessageContract.IS_READ, 1);
+		msg1.put(ChatMessageContract.JEWEL_TYPE, "C");
+		msg1.put(ChatMessageContract.IS_JEWEL_PICKED, 0);
+		msg1.put(ChatMessageContract.MSG_TEXT, "Welcome to Jewel Chat.");
+
+		//Uri urimsg = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
+		//getContentResolver().delete(urimsg, null, null);
 		getContentResolver().insert(urimsg, msg1);
 
 
@@ -157,14 +209,95 @@ public class FirstTimeContactDownloadService extends IntentService implements Re
 
 		ContentValues t1 = new ContentValues();
 		t1.put(TasksContract.TASK_ID, 1);
-		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.TYPE, 0);
 		t1.put(TasksContract.VALUE, 1);
-		t1.put(TasksContract.TASK_TEXT, "Pick (x) <img src = 'A'>." );
+		t1.put(TasksContract.TASK_TEXT, "Invite (x) Contacts." );
 		t1.put(TasksContract.DIAMOND_COUNT, 1);
 		t1.put(TasksContract.TASK_NOTE, "");
 
 		Uri uritask = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ TasksContract.SQLITE_TABLE_NAME);
 		getContentResolver().delete(uritask, null, null);
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 2);
+		t1.put(TasksContract.TYPE, 0);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Refer (x) Contacts." );
+		t1.put(TasksContract.DIAMOND_COUNT, 2);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 3);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'A'>." );
+		t1.put(TasksContract.DIAMOND_COUNT, 1);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 4);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'A'> each from 5 Contacts." );
+		t1.put(TasksContract.DIAMOND_COUNT, 2);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 5);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'B'>." );
+		t1.put(TasksContract.DIAMOND_COUNT, 1);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 6);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'B'> each from 5 Contacts." );
+		t1.put(TasksContract.DIAMOND_COUNT, 2);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 7);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'C'>." );
+		t1.put(TasksContract.DIAMOND_COUNT, 1);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 8);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'C'> each from 5 Contacts." );
+		t1.put(TasksContract.DIAMOND_COUNT, 2);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 9);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'D'>." );
+		t1.put(TasksContract.DIAMOND_COUNT, 1);
+		t1.put(TasksContract.TASK_NOTE, "");
+		getContentResolver().insert(uritask, t1);
+
+		t1 = new ContentValues();
+		t1.put(TasksContract.TASK_ID, 10);
+		t1.put(TasksContract.TYPE, 1);
+		t1.put(TasksContract.VALUE, 1);
+		t1.put(TasksContract.TASK_TEXT, "Pick (x)<img src = 'D'> each from 5 Contacts." );
+		t1.put(TasksContract.DIAMOND_COUNT, 2);
+		t1.put(TasksContract.TASK_NOTE, "");
 		getContentResolver().insert(uritask, t1);
 
 	}

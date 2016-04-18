@@ -20,6 +20,7 @@
 
 
 	<TextView
+		android:id="@+id/user_name"
 		android:layout_width="140dp"
 		android:layout_height="40dp"
 		android:layout_below="@+id/profile_pic"
@@ -79,6 +80,7 @@
 
 
 	<Button
+		android:id="@+id/edit_profile"
 		android:layout_below="@+id/Yimage"
 		android:layout_alignParentRight="true"
 		android:layout_width="150dp"
@@ -89,17 +91,199 @@
 		android:text="EDIT PROFILE"/>
 
 
-	<Button
+
+
+	<TextView
+		android:id="@+id/shop_counter_heading"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="@color/primary_dark"
+		android:text="Jewel Shop Counter"
 		android:layout_marginLeft="5dp"
 		android:layout_marginRight="5dp"
 		android:layout_marginTop="10dp"
-		android:background="@drawable/button_states"
-		android:gravity="center"
 		android:padding="5dp"
-		android:text="Full Product List"
-		android:visibility="gone"
+		android:layout_below="@+id/user_name"
+		android:textColor="@color/white"/>
+
+	<LinearLayout
+		android:id="@+id/shop_counter"
+		android:orientation="horizontal"
+		android:layout_below="@+id/shop_counter_heading"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		android:background="@color/accent"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:padding="10dp"
+			android:layout_height="wrap_content">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:src="@drawable/ic_ac"
+				android:padding="5dp"
+				android:background="@color/white"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:textColor="@color/white"
+				android:text="X 5"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:textColor="@color/white"
+				android:text="50"/>
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_gravity="center"
+				android:src="@drawable/jewelchat_logo"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:padding="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:src="@drawable/ic_bc"
+				android:padding="5dp"
+				android:background="@color/white"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="X 5"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="50"/>
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_gravity="center"
+				android:src="@drawable/jewelchat_logo"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:padding="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:src="@drawable/ic_cc"
+				android:padding="5dp"
+				android:background="@color/white"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="X 5"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="50"/>
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_gravity="center"
+				android:src="@drawable/jewelchat_logo"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:padding="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:src="@drawable/ic_dc"
+				android:padding="5dp"
+				android:background="@color/white"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="X 500"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="50000"/>
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_gravity="center"
+				android:src="@drawable/jewelchat_logo"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:padding="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:padding="5dp"
+				android:background="@color/white"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="X 5"/>
+			<TextView
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:gravity="center"
+				android:text="50"/>
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_gravity="center"
+				android:src="@drawable/jewelchat_logo"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="150dp"
+		android:layout_below="@+id/shop_counter"
+		android:text="Discount Shop"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		android:gravity="center"
+		android:textSize="28dp"
 		android:textColor="@color/white"/>
 
 

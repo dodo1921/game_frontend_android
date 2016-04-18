@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:paddingTop="5dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+	<RelativeLayout
+		android:id="@+id/top"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+	    <ImageView
+		    android:id="@+id/jewel"
+		    android:layout_width="70dp"
+		    android:layout_height="70dp"
+		    android:layout_marginBottom="35dp"
+		    android:layout_marginTop="35dp"
+		    android:layout_marginLeft="40dp"
+		    android:layout_marginRight="35dp"
+		    android:layout_alignParentTop="true"
+		    android:layout_alignParentLeft="true"
+		    android:src="@drawable/ic_qc"/>
+
+		<ImageView
+			android:id="@+id/ring"
+			android:layout_width="140dp"
+			android:layout_height="140dp"
+			android:layout_marginLeft="5dp"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentLeft="true"
+			android:src="@drawable/ic_gear"/>
+
+		<Button
+			android:id="@+id/start"
+			android:layout_width="140dp"
+			android:layout_height="wrap_content"
+			android:text="Create"
+			android:textColor="@color/white"
+			android:textSize="18dp"
+			android:background="@drawable/button_states"
+			android:gravity="center"
+			android:layout_centerVertical="true"
+			android:layout_marginTop="10dp"
+			android:layout_marginRight="20dp"
+			android:visibility="visible"
+			android:layout_alignParentRight="true"/>
+
+		<LinearLayout
+			android:id="@+id/inprocess"
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="20dp"
+			android:visibility="gone"
+			android:layout_alignParentRight="true">
+
+			<TextView
+				android:id="@+id/countdown"
+				android:layout_width="140dp"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="20:00"
+				android:textColor="@color/grey"
+				android:textSize="18sp"/>
+
+			<Button
+				android:id="@+id/stop"
+				android:layout_width="wrap_content"
+				android:layout_height="50dp"
+				android:textSize="18dp"
+				android:text="Stop       2"
+				android:textColor="@color/white"
+				android:padding="15dp"
+				android:gravity="center"
+				android:background="@drawable/button_states"
+				android:drawableRight="@drawable/ic_diamond_small"
+				android:drawablePadding="0dp"/>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:id="@+id/require"
+		android:layout_below="@id/top"
+		android:layout_marginTop="5dp"
+		android:paddingLeft="15dp"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:background="@color/grey"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:layout_gravity="center"
+			android:textColor="@color/grey_light"
+			android:text="5"/>
+
+		<ImageView
+			android:layout_width="25dp"
+			android:layout_height="25dp"
+			android:src="@drawable/ic_ac"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:layout_gravity="center"
+			android:textColor="@color/grey_light"
+			android:text=" + "/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="@color/grey_light"
+			android:layout_gravity="center"
+			android:text="5"/>
+
+		<ImageView
+			android:layout_width="25dp"
+			android:layout_height="25dp"
+			android:src="@drawable/ic_bc"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:layout_gravity="center"
+			android:textColor="@color/grey_light"
+			android:text=" + "/>
+
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="@color/grey_light"
+			android:layout_gravity="center"
+			android:text="100"/>
+
+		<ImageView
+			android:layout_width="25dp"
+			android:layout_height="25dp"
+			android:src="@drawable/coins"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_below="@+id/require"
+		android:layout_width="match_parent"
+		android:layout_height="2dp"
+		android:background="@color/grey_light"/>
+
+</RelativeLayout>

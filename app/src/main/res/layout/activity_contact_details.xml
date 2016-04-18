@@ -167,7 +167,7 @@
                             android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:layout_gravity="top"
-                            android:src="@drawable/jewelchat_logo"/>
+                            android:src="@drawable/coins"/>
 
                     </LinearLayout>
 
