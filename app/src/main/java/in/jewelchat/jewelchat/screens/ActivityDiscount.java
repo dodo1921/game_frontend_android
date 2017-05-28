@@ -1,15 +1,11 @@
 package in.jewelchat.jewelchat.screens;
 
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,42 +14,43 @@ import com.squareup.otto.Subscribe;
 import in.jewelchat.jewelchat.BaseNetworkActivity;
 import in.jewelchat.jewelchat.JewelChatApp;
 import in.jewelchat.jewelchat.R;
-import in.jewelchat.jewelchat.adapter.ChatRoomAdapter;
-import in.jewelchat.jewelchat.database.ChatMessageContract;
-import in.jewelchat.jewelchat.database.JewelChatDataProvider;
+import in.jewelchat.jewelchat.adapter.ContactListAdapter;
 import in.jewelchat.jewelchat.models.BasicJewelCountChangedEvent;
 
 /**
  * Created by mayukhchakraborty on 05/03/16.
  */
-public class ActivityChat extends BaseNetworkActivity implements LoaderManager.LoaderCallbacks<Cursor>, android.widget.AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener  {
+public class ActivityDiscount extends BaseNetworkActivity implements  AdapterView.OnItemClickListener  {
 
-	private ChatRoomAdapter chatRoomAdapter;
-	private ListView listView;
+	//private ContactListAdapter contactListAdapter;
+	//private ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chat);
+		setContentView(R.layout.activity_contacts);
 
 		rootLayout = (CoordinatorLayout) findViewById(R.id.main_content);
 
 		setUpAppbar();
 
 		TextView toolbar_title = (TextView)rootLayout.findViewById(R.id.toolbarTitle);
-		toolbar_title.setText("JewelChat Team");
+		toolbar_title.setText("Discount Shop");
 
-		//ImageView toolbar_image = (ImageView)rootLayout.findViewById(R.id.toolbarImage);
-		//toolbar_image.setImageURI(Uri.parse());
+		ImageView toolbar_image = (ImageView)rootLayout.findViewById(R.id.toolbarImage);
+		toolbar_image.setVisibility(ImageView.GONE);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-		listView = (ListView)findViewById(R.id.chat_room);
-		chatRoomAdapter = new ChatRoomAdapter(getApplicationContext());
-		listView.setAdapter(chatRoomAdapter);
+		//listView = (ListView)findViewById(R.id.contact_list);
+		//contactListAdapter = new ContactListAdapter(getApplicationContext());
+		//listView.setAdapter(contactListAdapter);
 
-		getSupportLoaderManager().initLoader(1, null, this);
+		//this.listView.setOnItemClickListener(this);
+
+
 
 	}
 
@@ -71,6 +68,10 @@ public class ActivityChat extends BaseNetworkActivity implements LoaderManager.L
 		JewelChatApp.getBusInstance().unregister(this);
 	}
 
+	@Override
+	public void onClick(View v) {
+
+	}
 
 	@Subscribe
 	public void onBasicJewelCountChanged( BasicJewelCountChangedEvent event) {
@@ -86,34 +87,10 @@ public class ActivityChat extends BaseNetworkActivity implements LoaderManager.L
 	}
 
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
-		Uri uri = Uri.parse(JewelChatDataProvider.SCHEME+"://" + JewelChatDataProvider.AUTHORITY + "/"+ ChatMessageContract.SQLITE_TABLE_NAME);
-		CursorLoader cursorLoader = new CursorLoader(getApplicationContext(),
-				uri, null, ChatMessageContract.CHAT_ROOM+" = ?", new String[]{JewelChatApp.TEAM_JEWELCHAT_ID+""}, ChatMessageContract.KEY_ROWID+" DESC LIMIT 20");
-
-		return cursorLoader;
-	}
-
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-		this.chatRoomAdapter.swapCursor(data);
-	}
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-		this.chatRoomAdapter.swapCursor(null);
-	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-	}
-
-	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-		return false;
 	}
 
 	@Override
@@ -128,10 +105,4 @@ public class ActivityChat extends BaseNetworkActivity implements LoaderManager.L
 				return super.onOptionsItemSelected(item);
 		}
 	}
-
-	@Override
-	public void onClick(View v) {
-
-	}
-
 }

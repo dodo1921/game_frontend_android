@@ -5,10 +5,12 @@ package in.jewelchat.jewelchat.models;
  */
 public class Factory {
 
-	public Factory(int jewel){
+	public Factory(int jewel, boolean inprocess){
 		this.jewel = jewel;
+		this.inprocess = inprocess;
 	}
 
 	public int jewel;
+	public boolean inprocess;
 
 }

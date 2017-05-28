@@ -275,6 +275,7 @@
 	</LinearLayout>
 
 	<Button
+		android:id="@+id/discountshop_button"
 		android:layout_width="match_parent"
 		android:layout_height="150dp"
 		android:layout_below="@+id/shop_counter"

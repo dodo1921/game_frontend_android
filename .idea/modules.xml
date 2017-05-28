@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JewelChat.iml" filepath="$PROJECT_DIR$/JewelChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smiley/smiley.iml" filepath="$PROJECT_DIR$/smiley/smiley.iml" />
     </modules>
   </component>
 </project>

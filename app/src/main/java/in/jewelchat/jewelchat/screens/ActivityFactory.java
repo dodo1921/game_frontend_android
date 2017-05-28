@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,26 +52,26 @@ public class ActivityFactory extends BaseNetworkActivity {
 
 		factoryListView = (ListView)rootLayout.findViewById(R.id.factory_list);
 		factoryList = new ArrayList<Factory>();
-		factoryList.add(new Factory(R.drawable.ic_ec));
-		factoryList.add(new Factory(R.drawable.ic_fc));
-		factoryList.add(new Factory(R.drawable.ic_gc));
-		factoryList.add(new Factory(R.drawable.ic_hc));
-		factoryList.add(new Factory(R.drawable.ic_ic));
-		factoryList.add(new Factory(R.drawable.ic_jc));
-		factoryList.add(new Factory(R.drawable.ic_kc));
-		factoryList.add(new Factory(R.drawable.ic_lc));
-		factoryList.add(new Factory(R.drawable.ic_mc));
-		factoryList.add(new Factory(R.drawable.ic_nc));
-		factoryList.add(new Factory(R.drawable.ic_oc));
-		factoryList.add(new Factory(R.drawable.ic_pc));
-		factoryList.add(new Factory(R.drawable.ic_qc));
-		factoryList.add(new Factory(R.drawable.ic_rc));
-		factoryList.add(new Factory(R.drawable.ic_sc));
-		factoryList.add(new Factory(R.drawable.ic_tc));
-		factoryList.add(new Factory(R.drawable.ic_uc));
-		factoryList.add(new Factory(R.drawable.ic_vc));
-		factoryList.add(new Factory(R.drawable.ic_wc));
-		factoryList.add(new Factory(R.drawable.ic_xc));
+		factoryList.add(new Factory(R.drawable.ic_ec, true));
+		factoryList.add(new Factory(R.drawable.ic_fc, false));
+		factoryList.add(new Factory(R.drawable.ic_gc, false));
+		factoryList.add(new Factory(R.drawable.ic_hc, false));
+		factoryList.add(new Factory(R.drawable.ic_ic, false));
+		factoryList.add(new Factory(R.drawable.ic_jc, false));
+		factoryList.add(new Factory(R.drawable.ic_kc, false));
+		factoryList.add(new Factory(R.drawable.ic_lc, false));
+		factoryList.add(new Factory(R.drawable.ic_mc, false));
+		factoryList.add(new Factory(R.drawable.ic_nc, false));
+		factoryList.add(new Factory(R.drawable.ic_oc, false));
+		factoryList.add(new Factory(R.drawable.ic_pc, false));
+		factoryList.add(new Factory(R.drawable.ic_qc, false));
+		factoryList.add(new Factory(R.drawable.ic_rc, false));
+		factoryList.add(new Factory(R.drawable.ic_sc, false));
+		factoryList.add(new Factory(R.drawable.ic_tc, false));
+		factoryList.add(new Factory(R.drawable.ic_uc, false));
+		factoryList.add(new Factory(R.drawable.ic_vc, false));
+		factoryList.add(new Factory(R.drawable.ic_wc, false));
+		factoryList.add(new Factory(R.drawable.ic_xc, false));
 
 
 
@@ -78,6 +79,18 @@ public class ActivityFactory extends BaseNetworkActivity {
 		factoryAdapter = new FactoryAdapter(this, factoryList);
 
 		factoryListView.setAdapter(factoryAdapter);
+
+		factoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				Factory f = factoryList.get(position);
+				f.inprocess = true;
+
+				factoryAdapter.notifyDataSetChanged();
+
+			}
+		});
 
 	}
 

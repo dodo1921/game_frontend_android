@@ -4,8 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -59,12 +65,42 @@ public class FactoryAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.activity_factory_element, null);
 			holder.jewel = (ImageView) convertView.findViewById(R.id.jewel);
+			holder.ring = (ImageView) convertView.findViewById(R.id.ring);
+			holder.start = (Button) convertView.findViewById(R.id.start);
+			holder.inprocess = (LinearLayout) convertView.findViewById(R.id.inprocess);
+			holder.countdown = (TextView) convertView.findViewById(R.id.countdown);
+			holder.stop = (Button) convertView.findViewById(R.id.stop);
 			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder)convertView.getTag();
 		}
 
 		holder.jewel.setImageResource( ((Factory) this.getItem(position)).jewel);
+		if(((Factory) this.getItem(position)).inprocess){
+			holder.start.setVisibility(View.GONE);
+			holder.inprocess.setVisibility(View.VISIBLE);
+			holder.ring.setVisibility(View.VISIBLE);
+			Animation animation = AnimationUtils.loadAnimation(this.mContext, R.anim.ring_rotate);
+			holder.ring.startAnimation(animation);
+		}else{
+			holder.start.setVisibility(View.VISIBLE);
+			holder.inprocess.setVisibility(View.GONE);
+			holder.ring.setVisibility(View.GONE);
+			//Animation animation = AnimationUtils.loadAnimation(this.mContext, R.anim.ring_rotate);
+			holder.ring.clearAnimation();
+		}
+
+		holder.start.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				View parentrow = (View)v.getParent().getParent();
+				ListView listView = (ListView) parentrow.getParent();
+				listView.performItemClick(v, listView.getPositionForView(parentrow), 0);
+
+			}
+		});
+
 
 		return convertView;
 	}
@@ -72,8 +108,11 @@ public class FactoryAdapter extends BaseAdapter {
 	public static class ViewHolder {
 
 		ImageView jewel;
-		//ImageView ring;
-		//Button start;
+		ImageView ring;
+		Button start;
+		LinearLayout inprocess;
+		TextView countdown;
+		Button stop;
 
 	}
 }
